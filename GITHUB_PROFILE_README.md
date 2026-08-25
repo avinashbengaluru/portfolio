@@ -1,4 +1,4 @@
-# Hi there, I'm Avinash 👋
+# Hi there, I'm Avinash Immaneni 👋
 
 ### 📊 Senior Data Analytics & AI Systems Engineer
 
