@@ -4,7 +4,7 @@
 
 Building **production AI agent systems**, **open-weight LLM & LoRA inference pipelines**, **real-time edge data architectures**, and **enterprise credit risk & governance models**.
 
-Creator of **BillMiner** — an XML-to-LLM operations platform that turns a legacy **Tally Prime** accounting system (`XML over HTTP`) into an autonomous, AI-run distribution business without changing how accountants work.
+Creator of **BillMiner** — an XML-to-LLM operations and **automated book keeping platform** that turns a legacy **Tally Prime** desktop **book keeping and accounting system** (`XML over HTTP`) into an autonomous, AI-run distribution business without changing how bookkeepers and accountants work.
 
 > **Core Engineering Theme:** *XML in, intelligence out.* Spend model compute only on ambiguity — route known lookups to ~25 ms edge databases, replace expensive closed APIs with **open-weight models (Gemma 4 & Gemma 2B LoRA)**, and bound every AI agent with arithmetic verification and reversible audit logs.
 
