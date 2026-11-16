@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Avinash Immaneni | AI Research & Systems Architect</title>
-  <meta name="description" content="Portfolio of Avinash Immaneni — AI Research, Document Intelligence, Real-Time Analytics, and Legacy ERP Automation Systems.">
+  <title>Avinash Immaneni | BillMiner — AI & XML-to-LLM Operations Platform</title>
+  <meta name="description" content="Portfolio of Avinash Immaneni — Creator of BillMiner: From Tally Prime XML to an LLM-run distribution business with Dual-Reader OCR, Edge Seller Detect (~25 ms/line), Rao Invoicing Assistant, and Self-Learning Catalog.">
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,7 +13,7 @@
   <style>
     :root {
       --bg: #050b14;
-      --card-bg: rgba(13, 25, 41, 0.75);
+      --card-bg: rgba(13, 25, 41, 0.78);
       --card-border: rgba(255, 255, 255, 0.1);
       --cyan: #2dd4bf;
       --cyan-bright: #5eead4;
@@ -37,9 +37,8 @@
         radial-gradient(circle at 85% 65%, rgba(45, 212, 191, 0.1) 0%, transparent 50%);
     }
 
-    /* Container */
     .container {
-      max-width: 1100px;
+      max-width: 1140px;
       margin: 0 auto;
       padding: 2.5rem 1.2rem;
     }
@@ -47,7 +46,7 @@
     /* Header / Hero Section */
     .hero {
       text-align: center;
-      padding: 2rem 1rem 3rem;
+      padding: 2rem 1rem 2.5rem;
       position: relative;
     }
 
@@ -60,42 +59,54 @@
       color: var(--purple-bright);
       padding: 0.4rem 1.2rem;
       border-radius: 50px;
-      font-size: 0.88rem;
+      font-size: 0.86rem;
       font-weight: 700;
       letter-spacing: 0.06em;
       text-transform: uppercase;
-      margin-bottom: 1.4rem;
+      margin-bottom: 1.2rem;
     }
 
     .hero h1 {
-      font-size: 3rem;
+      font-size: 2.9rem;
       font-weight: 800;
       letter-spacing: -0.02em;
       background: linear-gradient(135deg, #ffffff 30%, #cbd5e1 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      margin-bottom: 0.6rem;
+      margin-bottom: 0.5rem;
     }
 
     .hero h2 {
-      font-size: 1.35rem;
+      font-size: 1.32rem;
       font-weight: 600;
       color: var(--cyan-bright);
-      margin-bottom: 1.2rem;
+      margin-bottom: 1rem;
     }
 
     .hero p {
-      max-width: 800px;
-      margin: 0 auto;
+      max-width: 860px;
+      margin: 0 auto 1.4rem;
       color: var(--subtext);
-      font-size: 1.08rem;
+      font-size: 1.05rem;
+    }
+
+    .theme-banner {
+      display: inline-block;
+      background: rgba(45, 212, 191, 0.12);
+      border: 1px solid rgba(45, 212, 191, 0.35);
+      color: var(--cyan-bright);
+      padding: 0.55rem 1.2rem;
+      border-radius: 10px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.88rem;
+      font-weight: 600;
     }
 
     /* Section Styling */
     .section-title {
-      font-size: 1.75rem;
+      font-size: 1.7rem;
       font-weight: 800;
-      margin: 3.5rem 0 1.5rem;
+      margin: 3.2rem 0 1.4rem;
       display: flex;
       align-items: center;
       gap: 0.75rem;
@@ -103,14 +114,14 @@
       padding-bottom: 0.75rem;
     }
     .section-title span.icon {
-      font-size: 1.6rem;
+      font-size: 1.55rem;
     }
 
     /* Grid Layout */
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 1.5rem;
+      grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+      gap: 1.4rem;
     }
 
     /* Glass Cards */
@@ -118,7 +129,7 @@
       background: var(--card-bg);
       border: 1px solid var(--card-border);
       border-radius: 16px;
-      padding: 1.6rem;
+      padding: 1.55rem;
       backdrop-filter: blur(12px);
       transition: all 0.3s ease;
       position: relative;
@@ -138,28 +149,66 @@
       display: inline-block;
       padding: 0.25rem 0.65rem;
       border-radius: 6px;
-      font-size: 0.75rem;
+      font-size: 0.74rem;
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.05em;
-      margin-bottom: 0.8rem;
+      margin-bottom: 0.75rem;
     }
     .tag-purple { background: rgba(168, 85, 247, 0.18); color: var(--purple-bright); border: 1px solid rgba(168, 85, 247, 0.35); }
     .tag-cyan { background: rgba(45, 212, 191, 0.18); color: var(--cyan-bright); border: 1px solid rgba(45, 212, 191, 0.35); }
     .tag-orange { background: rgba(251, 146, 60, 0.18); color: var(--orange); border: 1px solid rgba(251, 146, 60, 0.35); }
 
     .card h3 {
-      font-size: 1.3rem;
+      font-size: 1.25rem;
       font-weight: 700;
       color: #ffffff;
-      margin-bottom: 0.6rem;
+      margin-bottom: 0.55rem;
     }
 
     .card p {
       color: var(--subtext);
-      font-size: 0.94rem;
-      margin-bottom: 1.2rem;
+      font-size: 0.93rem;
+      margin-bottom: 1rem;
     }
+
+    .card ul.feature-list {
+      list-style: none;
+      margin-bottom: 1.1rem;
+      color: var(--subtext);
+      font-size: 0.89rem;
+    }
+    .card ul.feature-list li {
+      margin-bottom: 0.45rem;
+      padding-left: 1.1rem;
+      position: relative;
+    }
+    .card ul.feature-list li::before {
+      content: "▹";
+      position: absolute;
+      left: 0;
+      color: var(--cyan-bright);
+    }
+    .card ul.feature-list li strong {
+      color: #e2e8f0;
+    }
+
+    /* Architecture Pipeline Block */
+    .arch-code {
+      background: rgba(4, 10, 18, 0.92);
+      border: 1px solid rgba(45, 212, 191, 0.28);
+      border-radius: 12px;
+      padding: 1.2rem 1.4rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.84rem;
+      color: #cbd5e1;
+      overflow-x: auto;
+      line-height: 1.55;
+      margin-bottom: 1.4rem;
+    }
+    .arch-code .hl-cyan { color: var(--cyan-bright); font-weight: 700; }
+    .arch-code .hl-purple { color: var(--purple-bright); font-weight: 700; }
+    .arch-code .hl-orange { color: var(--orange); font-weight: 700; }
 
     /* Process Screenshot Embeds */
     .process-screenshot {
@@ -192,13 +241,14 @@
       background: rgba(15, 28, 44, 0.9);
       border: 1px solid rgba(255, 255, 255, 0.1);
       color: var(--purple-bright);
-      padding: 0.3rem 0.7rem;
+      padding: 0.28rem 0.68rem;
       border-radius: 6px;
-      font-size: 0.82rem;
+      font-size: 0.8rem;
       font-family: 'JetBrains Mono', monospace;
       font-weight: 600;
     }
     .metric-badge.cyan { color: var(--cyan-bright); }
+    .metric-badge.orange { color: var(--orange); }
 
     /* Embedded Live Iframe Box */
     .demo-embed-box {
@@ -220,7 +270,7 @@
     /* Tech Stack Matrix Table */
     .skills-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
       gap: 1.2rem;
     }
     .skill-card {
@@ -231,7 +281,7 @@
     }
     .skill-card h4 {
       color: var(--purple-bright);
-      font-size: 0.98rem;
+      font-size: 0.96rem;
       font-weight: 700;
       margin-bottom: 0.7rem;
       text-transform: uppercase;
@@ -239,21 +289,21 @@
     }
     .skill-card ul {
       list-style: none;
-      font-size: 0.9rem;
+      font-size: 0.89rem;
       color: var(--subtext);
     }
     .skill-card ul li {
-      margin-bottom: 0.4rem;
+      margin-bottom: 0.42rem;
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       gap: 0.4rem;
     }
     .skill-card ul li::before {
       content: "▹";
       color: var(--cyan-bright);
+      flex-shrink: 0;
     }
 
-    /* Footer */
     footer {
       text-align: center;
       padding: 3rem 1rem 1rem;
@@ -270,182 +320,258 @@
     
     <!-- Hero Header -->
     <header class="hero">
-      <div class="avatar-badge">📊 Senior Data Analytics & AI Systems Engineer</div>
+      <div class="avatar-badge">🤖 AI Agent Architect · Open-Weight LLM Systems · Founder of BillMiner</div>
       <h1>Avinash Immaneni</h1>
-      <h2>Real-Time Data Analytics · Machine Learning & OCR Pipelines · Enterprise Intelligence</h2>
-      <p>Specializing in real-time SQL analytics pipelines, automated data quality & OCR extraction, and enterprise intelligence architectures converting unstructured legacy ERP data into actionable executive insights.</p>
+      <h2>BillMiner: Autonomous AI Agents &amp; Open-Weight Models Running a Distribution Business</h2>
+      <p>A dental-supplies distributor kept its entire business in <strong>Tally Prime</strong>, where the only way in or out is <strong>XML over HTTP</strong> across ~13,000 messy, clerk-typed stock names. I built <strong>BillMiner</strong>: an agentic operations platform that pulls that XML out, builds a self-healing product catalogue, and runs <strong>production AI agents and open-weight models (Gemma 4 &amp; Gemma 2B LoRA)</strong> on top of it — cutting inference costs dramatically by replacing expensive commercial APIs with open-weight models and ~25 ms edge lookups while posting paisa-exact XML vouchers back into Tally.</p>
+      <div class="theme-banner">Theme: XML in, intelligence out · Open-Weight Models + Autonomous Agents + Edge Economics</div>
     </header>
 
-    <!-- SECTION 1: AI Research & Document Intelligence (FRONT & CENTER!) -->
+    <!-- SECTION 0: AI Agent Architecture & Open-Weight Cost Engineering (NEW SPOTLIGHT!) -->
     <section>
-      <h2 class="section-title"><span class="icon">🧠</span> AI Research & Document Intelligence</h2>
-      
+      <h2 class="section-title"><span class="icon">🚀</span> Autonomous AI Agents &amp; Open-Weight Model Cost Reduction</h2>
+
       <div class="grid">
-        <!-- AI Card 1: Purchase OCR -->
+        <!-- Agent Spotlight 1: Open-Weight Migration & Cost Engineering -->
         <div class="card">
-          <span class="card-tag tag-purple">Computer Vision OCR</span>
-          <h3>Supplier Purchase PDF OCR (~30s)</h3>
-          <p>Built an automated vision OCR pipeline that parses raw supplier PDF bills, extracting GSTINs, 50+ line items, batch numbers, and expiry dates into legacy ERP purchase ledgers with zero manual typing.</p>
+          <span class="card-tag tag-orange">Open-Weight LLMs &amp; Cost Engineering</span>
+          <h3>From Expensive Frontier APIs → Production Gemma 4 &amp; Gemma 2B LoRA</h3>
+          <p>Prototyped extraction and catalog matching on commercial frontier APIs, then systematically re-architected the stack around <strong>open-weight models and deterministic edge routing</strong> to eliminate per-token API bottlenecks and slash inference costs:</p>
+          <ul class="feature-list">
+            <li><strong>Gemma 4 in Production:</strong> Replaced commercial LLM calls on high-volume purchase bill line matching and variant resolution with open-weight <strong>Gemma 4</strong>, eliminating rate limits and per-bill API spikes.</li>
+            <li><strong>Gemma 2B LoRA Judge (Fine-Tuning):</strong> Built the training dataset and fine-tuning pipeline for a compact <strong>Gemma 2B LoRA</strong> ranking judge designed to pick the winning SKU from the top-5 rule candidates at a fraction of large-model compute.</li>
+            <li><strong>$0-Token Edge Routing &amp; $0.007 Imagery:</strong> Offloaded known aliases and defining-word lookups to <strong>Cloudflare Workers + D1 (~25 ms/line)</strong> so models are only called on true ambiguity, and built a real-photo storefront pipeline at <strong>~$0.007 per image</strong> instead of expensive generative image APIs.</li>
+          </ul>
           <div class="metric-badges">
-            <span class="metric-badge">OpenCV / Vision OCR</span>
-            <span class="metric-badge">Batch & Expiry Extraction</span>
-            <span class="metric-badge">Zero Manual Entry</span>
+            <span class="metric-badge orange">Gemma 4 in Production</span>
+            <span class="metric-badge orange">Gemma 2B LoRA Fine-Tuning</span>
+            <span class="metric-badge cyan">~25 ms Zero-Token Edge Hits</span>
+            <span class="metric-badge cyan">$0.007 / Product Image</span>
           </div>
         </div>
 
-        <!-- AI Card 2: Prescriptions -->
+        <!-- Agent Spotlight 2: Multi-Agent Production Architecture -->
         <div class="card">
-          <span class="card-tag tag-purple">Handwritten Vision OCR</span>
-          <h3>Prescription & Multi-Format Note OCR</h3>
-          <p>Engineered document recognition models that convert handwritten doctor notes and multi-channel customer queries (Phone/Chat/Email) into structured catalog item orders.</p>
-          <div class="metric-badges" style="margin-bottom:0.8rem;">
-            <span class="metric-badge">Handwritten OCR</span>
-            <span class="metric-badge">Multi-Channel Ingestion</span>
-          </div>
-
-          <!-- Real System Screenshot: Handwritten OCR -->
-          <img src="./assets/screenshots/handwritten_ocr.jpg" alt="Handwritten Doctor Note OCR Modal" class="process-screenshot">
-          <div class="screenshot-caption">📷 Live System: AI extracting 9 line items from handwritten doctor note into structured order payload.</div>
-        </div>
-
-        <!-- AI Card 3: Catalog Clustering -->
-        <div class="card">
-          <span class="card-tag tag-purple">NLP & Variant Clustering</span>
-          <h3>AI Catalog Normalization</h3>
-          <p>Unsupervised NLP & clustering engine that transforms thousands of flat, unformatted legacy ERP ledgers (e.g. <code>Fuji_IX_GP_Shade_A2</code>) into clean product families with image galleries and variant tags (<code>A2</code>, <code>A3</code>, <code>B2</code>).</p>
+          <span class="card-tag tag-purple">Production AI Agent Fleet</span>
+          <h3>4 Specialized Agents with Deterministic &amp; Reversible Guardrails</h3>
+          <p>Instead of a single fragile chat prompt, BillMiner runs <strong>four narrow, tool-using AI agents</strong> where every action is bounded by arithmetic checks, schema gates, and reversible audit logs:</p>
+          <ul class="feature-list">
+            <li><strong>1. "Rao" (Retrieval Augmented Outvoicing Agent):</strong> In-workspace invoicing agent that takes pasted or photographed customer orders and writes structured lines straight onto the live bill with inline variant pickers, or drafts instant GST-inclusive price replies.</li>
+            <li><strong>2. Nightly Self-Learning &amp; Catalogue Repair Agent:</strong> A nightly Cloudflare cron diffs raw OCR scans against final posted Tally vouchers to learn supplier aliases, followed by a scheduled <strong>Claude cloud agent</strong> that audits each bill and fixes catalogue cards through reversible, state-logged endpoints.</li>
+            <li><strong>3. Multi-Source Web Research Agent:</strong> Combines <strong>Brave Search API + LLM reader</strong> with manufacturer PDFs to verify missing product attributes across multiple independent sources before routing shelf-only unknowns to a 1-tap staff mobile queue.</li>
+            <li><strong>4. Read-Only Gmail Draft Agent:</strong> Monitors shared enquiry inboxes, runs Seller Detect against D1, and prepares quotation drafts without ever auto-sending unreviewed mail.</li>
+          </ul>
           <div class="metric-badges">
-            <span class="metric-badge">NLP Text Normalization</span>
-            <span class="metric-badge">Variant Clustering</span>
+            <span class="metric-badge">Rao In-Screen Agent</span>
+            <span class="metric-badge">Nightly Audited Repair Agent</span>
+            <span class="metric-badge">Brave + LLM Research Agent</span>
+            <span class="metric-badge">100% Reversible Edits</span>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- SECTION 2: Real-Time Analytics & Data Pipelines -->
+    <!-- SECTION 1: Core AI, OCR & Order Intelligence -->
     <section>
-      <h2 class="section-title"><span class="icon">📊</span> Real-Time Analytics & Data Science Pipelines</h2>
+      <h2 class="section-title"><span class="icon">🧠</span> BillMiner AI, Dual-Reader OCR &amp; Self-Learning Loops</h2>
+      
+      <div class="grid">
+        <!-- Card 1: Dual-Reader Purchase Bill Scanner -->
+        <div class="card">
+          <span class="card-tag tag-purple">Dual-Reader Purchase Bill Scanner</span>
+          <h3>Supplier Invoice → Tally Purchase Voucher (92% End-to-End)</h3>
+          <p>Reads multi-page photos or PDFs of supplier bills using <strong>two readers in parallel</strong> whose results are reconciled by arithmetic checks against the bill's printed taxable total:</p>
+          <ul class="feature-list">
+            <li><strong>Parallel Readers:</strong> Custom Vision OCR + rule-based table layout reader (handles tilted tables, <code>1.234,56</code> numbers, swapped qty/rate columns, and wrapped item names) alongside <strong>LlamaParse ("OCRia-1")</strong>. The reader whose line items sum to the printed taxable total wins.</li>
+            <li><strong>Per-Supplier Notes &amp; Gemma 4 Matching:</strong> Applies remembered supplier pack hints (re-verified by math) and matches each line to both its Tally stock item and catalogue card using <strong>Gemma 4</strong>.</li>
+            <li><strong>Nightly Self-Learning Loop:</strong> A nightly Cloudflare cron compares scans with posted Tally vouchers to learn supplier aliases/rules (with fragment guards and full undo), and a scheduled <strong>Claude agent routine</strong> fixes catalogue cards via audited, reversible endpoints.</li>
+          </ul>
+          <div class="metric-badges">
+            <span class="metric-badge">291 / 317 Bills Correct (92%)</span>
+            <span class="metric-badge">12 / 12 Regression Match</span>
+            <span class="metric-badge">Gemma 4 + Claude Audit Loop</span>
+          </div>
+        </div>
+
+        <!-- Card 2: Seller Detect & Rao -->
+        <div class="card">
+          <span class="card-tag tag-purple">Edge Seller Detect + Rao Assistant</span>
+          <h3>Customer Message → Tally Items (~25 ms/line) &amp; "Rao"</h3>
+          <p>Maps customer WhatsApp messages, Gmail enquiries, and photographed handwritten lists to exact Tally stock items at the edge on <strong>Cloudflare Workers + D1</strong>, paired with <strong>Rao ("Retrieval Augmented Outvoicing")</strong> inside the invoice screen:</p>
+          <ul class="feature-list">
+            <li><strong>Measured Edge Accuracy:</strong> WhatsApp orders hit <strong>81% top-1 and 98% top-3</strong>; Gmail quotes hit <strong>75% top-1 and 89% top-3</strong> at ~25 ms/line. When unsure, offers 3 choices instead of guessing.</li>
+            <li><strong>Defining Words &amp; LoRA Judge:</strong> Steered by product nouns per Tally item, with a fine-tuned <strong>Gemma 2B LoRA</strong> judge (in progress) trained to rank top-5 candidates.</li>
+            <li><strong>Rao Invoicing Assistant:</strong> Paste or photograph an order and Rao puts lines straight onto the bill with inline variant pickers, or generates plain-text GST-inclusive price replies without touching the active bill.</li>
+          </ul>
+          <div class="metric-badges" style="margin-bottom:0.8rem;">
+            <span class="metric-badge">~25 ms / line (Cloudflare D1)</span>
+            <span class="metric-badge">98% Top-3 WhatsApp</span>
+            <span class="metric-badge">Rao: Retrieval Augmented Outvoicing</span>
+          </div>
+
+          <img src="./assets/screenshots/handwritten_ocr.jpg" alt="Handwritten Doctor Note OCR Modal" class="process-screenshot">
+          <div class="screenshot-caption">📷 Live System: Extracting 9 line items from a handwritten doctor order into structured bill lines.</div>
+        </div>
+
+        <!-- Card 3: Catalogue Built from Tally's Mess -->
+        <div class="card">
+          <span class="card-tag tag-purple">"Nothing Is Lost" Catalogue Engine</span>
+          <h3>~13,000 Messy Tally Names → Family / Variant Cards</h3>
+          <p>Reorganized ~13,000 clerk-typed Tally stock names (~9,600 sold) with misspellings, duplicates, and catch-all names into structured <strong>Product Families → Variants (catalogue cards)</strong>:</p>
+          <ul class="feature-list">
+            <li><strong>Move, Never Delete:</strong> Every Tally name remains findable. Full pre/post set audits ensure zero lost keys; <strong>3,256 never-billed dead names</strong> audited and marked in our DB without altering Tally.</li>
+            <li><strong>Multi-Source Grounding:</strong> Manufacturer catalogues treated as truth, backed by <strong>Brave Search + LLM web verification</strong> across multiple sources.</li>
+            <li><strong>Staff Micro-Questions:</strong> Shelf-knowledge gaps become quick mobile questions for staff while they wait on tasks — settling <strong>~22% of catalogue gaps</strong> organically.</li>
+          </ul>
+          <div class="metric-badges">
+            <span class="metric-badge">~13,000 Tally Items Mapped</span>
+            <span class="metric-badge">3,256 Dead Names Audited</span>
+            <span class="metric-badge">22% Gaps Solved via Staff UI</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 2: The XML -> LLM Pipeline Architecture -->
+    <section>
+      <h2 class="section-title"><span class="icon">🔄</span> Architecture: The XML → LLM Pipeline</h2>
+
+      <div class="arch-code">
+<span class="hl-orange">Tally Prime (desktop, XML/HTTP :9000)</span>
+   │  custom TDL reports, compact XML exports (≤500 KB per queued job; isolated date variables never disturb live billing)
+   ▼
+<span class="hl-cyan">Windows Tally Agent</span> ── job queue (pull sync, push XML vouchers with paisa-exact half-up GST rounding, print 4×6 labels)
+   ▼
+<span class="hl-cyan">Firestore (app data)  ⇄  Cloudflare D1 / KV</span> (edge lookup ~25 ms/line: vouchers, stock items, aliases, catalogue cards)
+   ▼
+<span class="hl-purple">LLM + OCR Layer:</span>  Google Vision OCR · LlamaParse ("OCRia-1") · Gemma 4 · Gemma 2B LoRA (in progress) · Claude Routines · Brave Search
+   ▼
+<span class="hl-cyan">Next.js Web App (Firebase App Hosting) + Cloudflare Workers APIs</span>
+   ▼
+<span class="hl-orange">Back to Tally as XML:</span> purchase vouchers, sales invoices, and new stock items (reconciles with Tally &amp; GSTR-1 to the paisa)
+      </div>
       
       <div class="grid">
         <div class="card cyan-accent">
-          <span class="card-tag tag-cyan">Postgres Real-Time Analytics</span>
-          <h3>SQL Analytics Engine vs Legacy XML Blobs</h3>
-          <p>Replaced slow XML exports from legacy ERP systems with a structured PostgreSQL analytics layer, enabling instant query-ready dashboards on top selling items, clerk velocities, and cashflow trends.</p>
+          <span class="card-tag tag-cyan">Non-Disruptive TDL &amp; Paisa-Exact XML</span>
+          <h3>Zero-Friction Tally Prime Synchronization</h3>
+          <p>Custom TDL reports split exports into ≤500 KB queued jobs with isolated date-range variables so live billing clerks are never interrupted. Outbound XML calculates GST per-line rounded half-up to the paisa — matching Tally and rebuilt GSTR-1 returns with zero rounding rejections.</p>
           <div class="metric-badges">
-            <span class="metric-badge cyan">PostgreSQL</span>
-            <span class="metric-badge cyan">Query-Ready Data</span>
-            <span class="metric-badge cyan">Sub-Second Analytics</span>
+            <span class="metric-badge cyan">≤500 KB Queued TDL Jobs</span>
+            <span class="metric-badge cyan">Paisa-Exact GST &amp; GSTR-1</span>
+            <span class="metric-badge cyan">Zero Clerk Disruption</span>
           </div>
         </div>
 
         <div class="card cyan-accent">
-          <span class="card-tag tag-cyan">Predictive Inventory Analytics</span>
-          <h3>Batch & Expiry Tracking Analytics</h3>
-          <p>Implemented automated batch expiry tracking across inventory distribution hubs, reducing product write-offs and optimizing reorder thresholds based on historical sales velocity.</p>
+          <span class="card-tag tag-cyan">Storefront &amp; Ops Ecosystem</span>
+          <h3>Invoice Workspace, Storefront &amp; Operations Tools</h3>
+          <p>Any-word-order search ranked by customer and overall sales history, box-vs-loose carton conversions, 4×6 shipping labels via the Tally agent queue, a read-only Gmail draft worker, customer portal, and an upcoming storefront with real house-style photos at <strong>~$0.007/image</strong> (top 85 pages covering 70% of sales prioritized).</p>
           <div class="metric-badges">
-            <span class="metric-badge cyan">Inventory Forecasting</span>
-            <span class="metric-badge cyan">Batch Expiry Tracking</span>
+            <span class="metric-badge cyan">$0.007 / Real Product Photo</span>
+            <span class="metric-badge cyan">85 Pages → 70% of Sales</span>
+            <span class="metric-badge cyan">4×6 Thermal Label Queue</span>
           </div>
         </div>
 
         <!-- Real System Screenshot: Sales & Purchase Analytics + Variant Matrix -->
         <div class="card cyan-accent" style="grid-column: 1 / -1;">
-          <span class="card-tag tag-cyan">Live Analytics Dashboard</span>
-          <h3>Customer Price History & AI Variant Selection Matrix</h3>
-          <p>Live operational dashboard showing doctor price history, supplier purchase cost tracking, low-price alert badges, and multi-shade variant selection matrix.</p>
+          <span class="card-tag tag-cyan">Live Workspace &amp; Variant Picker</span>
+          <h3>Customer Price History, Box/Loose Conversion &amp; Variant Selection Matrix</h3>
+          <p>Live operational workspace displaying customer-specific purchase history, supplier cost tracking, low-price alerts, and an inline multi-shade/size variant picker.</p>
           <img src="./assets/screenshots/sales_analytics.jpg" alt="Real-Time Customer Price History and Variant Matrix Dashboard" class="process-screenshot">
-          <div class="screenshot-caption">📊 Live System: Doctor historical sales pricing, supplier cost tracking, and variant shade selection.</div>
+          <div class="screenshot-caption">📊 Live BillMiner Workspace: Customer historical pricing, supplier cost tracking, and variant matrix picker.</div>
         </div>
       </div>
     </section>
 
-    <!-- SECTION 3: Enterprise Operations & Legacy ERP Automation -->
+    <!-- SECTION 3: Live Operational Proof & Interactive Deck -->
     <section>
-      <h2 class="section-title"><span class="icon">⚡</span> AI-Driven Enterprise Operations Platform</h2>
+      <h2 class="section-title"><span class="icon">⚡</span> Live Operational Workflows &amp; Interactive Architecture Deck</h2>
       
       <div class="grid" style="margin-bottom:1.5rem;">
-        <!-- Real System Screenshot: Order Stepper -->
         <div class="card cyan-accent">
-          <span class="card-tag tag-cyan">Process Stepper</span>
-          <h3>Closed-Loop 5-Step Order Stepper</h3>
-          <p>Real-time lifecycle tracking: Draft ➔ Quote Sent ➔ Payment Received ➔ Legacy ERP Auto-Post ➔ Sent via WhatsApp.</p>
+          <span class="card-tag tag-cyan">Closed-Loop Order Flow</span>
+          <h3>5-Stage Order &amp; Tally Voucher Lifecycle</h3>
+          <p>Real-time lifecycle tracking from Draft ➔ Quote Sent ➔ Payment / Confirmation ➔ Tally XML Auto-Post ➔ WhatsApp &amp; 4×6 Label Dispatch.</p>
           <img src="./assets/screenshots/order_stepper.jpg" alt="Closed-Loop 5-Step Order & Payment Pipeline Tracking" class="process-screenshot">
-          <div class="screenshot-caption">⚡ Live System: Real-time 5-stage order progress tracking & instant invoicing.</div>
+          <div class="screenshot-caption">⚡ Live System: End-to-end order progress tracking &amp; automated Tally XML voucher posting.</div>
         </div>
 
-        <!-- Real System Screenshot: Stock Search & Dispatch -->
         <div class="card cyan-accent">
-          <span class="card-tag tag-cyan">Stock & Dispatch</span>
-          <h3>Sub-Second Stock Lookup & Customer Dispatch</h3>
-          <p>Instant SKU search across 10,000+ items with automated customer billing notifications and thermal shipping label generation.</p>
+          <span class="card-tag tag-cyan">Edge Search &amp; Dispatch</span>
+          <h3>Any-Word-Order Search &amp; 4×6 Thermal Label Queue</h3>
+          <p>Instant search across ~13,000 Tally items ranked by what the customer buys and overall sales velocity, with 4×6 shipping labels printed through the desktop Tally agent queue.</p>
           <img src="./assets/screenshots/stock_search.jpg" alt="Instant Stock Search and Customer Dispatch Panel" class="process-screenshot">
-          <div class="screenshot-caption">📱 Live System: Fast stock search, customer details, and thermal invoice printing.</div>
+          <div class="screenshot-caption">📱 Live System: Customer-ranked stock search, variant picker, and thermal label queue.</div>
         </div>
       </div>
 
       <div class="card cyan-accent">
-        <span class="card-tag tag-cyan">Enterprise Operational System</span>
-        <h3>High-Speed Operations Platform & Legacy ERP Sync</h3>
-        <p>A specialized operational web platform designed to collapse 4 manual legacy ERP steps into 1 action. Generates 1-tap quotes with embedded UPI payment links in 10 seconds, auto-posting Customer Ledgers, Sales Vouchers, and Payment Receipts into legacy ERP systems upon payment.</p>
+        <span class="card-tag tag-cyan">Interactive System Presentation</span>
+        <h3>BillMiner + Tally Prime Interactive Architecture Deck</h3>
+        <p>Explore the interactive presentation deck below (or open in full-screen Desktop / Mobile view) showing how BillMiner sits beside Tally Prime: XML in, intelligence out.</p>
         
         <div class="metric-badges" style="margin-bottom:1.2rem;">
-          <span class="metric-badge cyan">⏱️ 15m ➔ 10s Quotation</span>
-          <span class="metric-badge cyan">💳 Direct Cashflow</span>
-          <span class="metric-badge cyan">🔄 Zero Re-Typing ERP Sync</span>
-          <span class="metric-badge cyan">⚡ Resilient Offline Queue</span>
+          <span class="metric-badge cyan">⚡ ~25 ms/line Edge Lookup</span>
+          <span class="metric-badge cyan">📄 92% Dual-Reader Bill OCR</span>
+          <span class="metric-badge cyan">🔄 Paisa-Exact Tally XML Sync</span>
+          <span class="metric-badge cyan">🛡️ Resilient Offline Agent Queue</span>
         </div>
 
-        <!-- Embedded Interactive Architecture & Process Deck -->
         <div class="demo-embed-box">
-          <iframe src="./mobile.html" title="Operational Process Architecture Deck"></iframe>
+          <iframe src="./mobile.html" title="BillMiner Operational Architecture Deck"></iframe>
         </div>
       </div>
     </section>
 
     <!-- SECTION 4: Technical Skills Matrix -->
     <section>
-      <h2 class="section-title"><span class="icon">💻</span> Technical Skills Matrix</h2>
+      <h2 class="section-title"><span class="icon">💻</span> BillMiner Tech Stack &amp; Engineering Matrix</h2>
       
       <div class="skills-grid">
         <div class="skill-card">
-          <h4>AI & Computer Vision</h4>
+          <h4>AI, LLMs &amp; OCR</h4>
           <ul>
-            <li>Computer Vision OCR</li>
-            <li>Document Intelligence</li>
-            <li>Handwritten Text Extraction</li>
-            <li>NLP Text Normalization</li>
-            <li>Unsupervised Variant Clustering</li>
+            <li>Google Cloud Vision + Custom Layout Reader</li>
+            <li>LlamaParse ("OCRia-1") Dual Reconciliation</li>
+            <li>Gemma 4 (Production Item &amp; Variant Matching)</li>
+            <li>Gemma 2B LoRA (Candidate Judge Fine-Tuning)</li>
+            <li>Claude Agents (Audited Nightly Cloud Routines)</li>
+            <li>Brave Search API (Multi-Source Web Grounding)</li>
           </ul>
         </div>
 
         <div class="skill-card">
-          <h4>Data & Analytics</h4>
+          <h4>Edge, Data &amp; Storage</h4>
           <ul>
-            <li>PostgreSQL Analytics</li>
-            <li>Real-Time Query Pipelines</li>
-            <li>SQL Data Modeling</li>
-            <li>Event Streaming</li>
-            <li>Inventory Velocity Forecasting</li>
+            <li>Cloudflare Workers (Edge APIs &amp; Nightly Cron)</li>
+            <li>Cloudflare D1 (SQLite Edge DB, ~25 ms/line)</li>
+            <li>Cloudflare KV &amp; Firebase Storage</li>
+            <li>Cloud Firestore (App State &amp; RBAC Rules)</li>
+            <li>Self-Learning Alias &amp; Reversible Audit Logs</li>
           </ul>
         </div>
 
         <div class="skill-card">
-          <h4>Full-Stack & Cloud</h4>
+          <h4>Legacy ERP &amp; Tax Engine</h4>
           <ul>
-            <li>Python</li>
-            <li>JavaScript (ES6+) / TypeScript</li>
-            <li>React / Next.js</li>
-            <li>Node.js / Express</li>
-            <li>Supabase Edge Functions</li>
+            <li>Tally Prime XML over HTTP (:9000)</li>
+            <li>Custom TDL Reports (≤500 KB Queued Jobs)</li>
+            <li>Windows Desktop Sync &amp; Label Agent</li>
+            <li>Paisa-Exact Per-Line Half-Up GST Rounding</li>
+            <li>GSTR-1 Return Reconstruction from Vouchers</li>
           </ul>
         </div>
 
         <div class="skill-card">
-          <h4>Integrations & Systems</h4>
+          <h4>Web App &amp; Integrations</h4>
           <ul>
-            <li>Legacy ERP REST/XML APIs</li>
-            <li>WhatsApp Business API</li>
-            <li>PhonePe UPI Cashflow</li>
-            <li>Android Native Thermal Printing</li>
+            <li>Next.js / React / TypeScript</li>
+            <li>Tailwind CSS &amp; shadcn/ui</li>
+            <li>Firebase App Hosting &amp; Firebase Auth</li>
+            <li>Rao (Retrieval Augmented Outvoicing Chat)</li>
+            <li>WhatsApp Intake, Read-Only Gmail Worker, 4×6 Thermal Labels</li>
           </ul>
         </div>
       </div>
@@ -453,7 +579,7 @@
 
     <!-- Footer -->
     <footer>
-      <p>Designed & Built by <strong>Avinash Immaneni</strong> · Hosted on GitHub Pages</p>
+      <p>Designed &amp; Built by <strong>Avinash Immaneni</strong> · <strong>BillMiner</strong> (XML-to-LLM Operations Platform)</p>
     </footer>
 
   </div>

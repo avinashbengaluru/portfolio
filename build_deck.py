@@ -156,15 +156,15 @@ arch_script = """
 
       const copy = {
         online: {
-          subtitle: 'BillBuddy sits in the middle — WhatsApp, payments, books, and sync stay aligned without the clerk juggling systems.',
-          hub: 'Orders, customers, process to books', pill: 'Hub',
-          footer: '<strong>Black box on purpose:</strong> clerks work in BillBuddy and WhatsApp — Tally stays the books, sync stays under the hood.',
+          subtitle: 'BillMiner sits in the middle — WhatsApp, payments, books, and sync stay aligned without the clerk juggling systems.',
+          hub: 'Edge D1 (~25ms) · Gemma 4 · Rao Agent · XML Queue', pill: 'Hub',
+          footer: '<strong>Black box on purpose:</strong> clerks work in BillMiner and WhatsApp — Tally stays the books, sync stays under the hood.',
           legend: 'Live sync · data flowing both ways', status: 'Online', hint: 'Click → go offline', title: 'Click to take Tally offline',
         },
         offline: {
-          subtitle: 'Tally is offline — BillBuddy keeps working. New bills queue locally and submit when books come back.',
+          subtitle: 'Tally is offline — BillMiner keeps working. New bills queue locally and submit when books come back.',
           hub: 'Working independently · bills queued for Tally', pill: 'Queuing',
-          footer: '<strong>Tally offline:</strong> clerks keep quoting, collecting, and creating bills in BillBuddy — submission waits in queue until Tally is back.',
+          footer: '<strong>Tally offline:</strong> clerks keep quoting, collecting, and creating bills in BillMiner — submission waits in queue until Tally is back.',
           legend: 'Independent mode · bills queued for Tally', status: 'Offline', hint: 'Click → bring online', title: 'Click to bring Tally back online',
         },
       };
@@ -176,7 +176,7 @@ arch_script = """
           queueBanner.textContent = queued === 0 ? 'All queued bills submitted to Tally' : (queued === 1 ? 'Submitting 1 bill to Tally…' : 'Submitting ' + queued + ' bills to Tally…');
           return;
         }
-        queueBanner.textContent = queued === 1 ? '1 bill queued in BillBuddy · submit when Tally is back' : queued + ' bills queued in BillBuddy · submit when Tally is back';
+        queueBanner.textContent = queued === 1 ? '1 bill queued in BillMiner · submit when Tally is back' : queued + ' bills queued in BillMiner · submit when Tally is back';
       }
 
       function startQueueing() {
@@ -475,7 +475,7 @@ html_out = f"""<!DOCTYPE html>
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>BillBuddy Demo</title>
+  <title>BillMiner Demo</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,500;6..72,600;6..72,700&display=swap" rel="stylesheet" />

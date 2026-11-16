@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>BillBuddy Demo</title>
+  <title>BillMiner Demo</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,500;6..72,600;6..72,700&display=swap" rel="stylesheet" />
@@ -2243,13 +2243,13 @@
     <section class="deck-slide active" id="slide-intro" data-slide="0" aria-hidden="false">
 <div class="slide-inner">
     <div class="brand-bar">
-      <img class="billbuddy-logo" src="assets/billbuddy-logo.png" alt="BillBuddy" />
+      <img class="billbuddy-logo" src="assets/billbuddy-logo.png" alt="BillMiner" />
       <span class="vs-chip"><span></span> works with</span>
       <img class="tally-logo" src="assets/tally-logo.svg" alt="Tally" />
     </div>
 
     <header class="title-bubble">
-      <h1>Why Tally matters in India</h1>
+      <h1>Why Tally Prime Matters — & Why BillMiner Sits Beside It</h1>
       <p class="sub">The default books for Indian MSMEs — accounting, inventory, GST, and banking in one place for decades.</p>
     </header>
 
@@ -2355,13 +2355,13 @@
     <section class="deck-slide" id="slide-why" data-slide="1" aria-hidden="true">
 <div class="slide-inner">
     <div class="brand-bar">
-      <img class="billbuddy-logo" src="assets/billbuddy-logo.png" alt="BillBuddy" />
+      <img class="billbuddy-logo" src="assets/billbuddy-logo.png" alt="BillMiner" />
       <span class="vs-chip"><span></span> works with</span>
       <img class="tally-logo" src="assets/tally-logo.svg" alt="Tally" />
     </div>
 
     <header class="title-bubble">
-      <h1>Why we built separate software</h1>
+      <h1>Why We Built BillMiner Beside Tally (XML In, Intelligence Out)</h1>
       <p class="sub">Tally is the books — not a clerk’s quote desk. Every WhatsApp ask became repeated Tally lookups, PDF printing, and rework.</p>
     </header>
 
@@ -2484,8 +2484,8 @@
       <!-- AFTER -->
       <article class="flow-panel after">
         <div class="flow-head">
-          <div class="tag">After — BillBuddy</div>
-          <h2>One screen → QUOTE on WhatsApp → pay → Process to Tally</h2>
+          <div class="tag">After — BillMiner</div>
+          <h2>Seller Detect (~25 ms/line) + Rao Agent → Quote → Paisa-Exact Tally XML</h2>
         </div>
 
         <div class="flow-diagram" aria-hidden="true">
@@ -2545,8 +2545,8 @@
             </div>
             <div class="fnode hub a-bb">
               <div class="icon"><img src="assets/billbuddy-logo.png" alt="" /></div>
-              <h3>BillBuddy</h3>
-              <p>Catalog + customer ready</p>
+              <h3>BillMiner</h3>
+              <p>Edge D1 + Gemma 4 + Rao</p>
             </div>
             <div class="fnode a-quote">
               <h3>QUOTE</h3>
@@ -2561,31 +2561,31 @@
         </div>
 
         <ol class="steps">
-          <li><strong>Synced data</strong> — items, customers, rates already there</li>
-          <li>Build quote in <strong>BillBuddy</strong> — no Tally hunting</li>
-          <li>Send <strong>QUOTE</strong> on WhatsApp + <strong>pay link</strong></li>
-          <li><strong>Process</strong> once — matching voucher in Tally</li>
+          <li><strong>Compact TDL XML sync (≤500 KB jobs)</strong> — ~13,000 items synced without disturbing clerks</li>
+          <li><strong>Seller Detect (~25 ms/line) &amp; Rao Agent</strong> — 98% top-3 accuracy on WhatsApp orders</li>
+          <li><strong>Open-weight Gemma 4 + Edge D1</strong> — low-cost inference with inline variant pickers</li>
+          <li><strong>Process once</strong> — posts paisa-exact XML vouchers back into Tally Prime</li>
         </ol>
       </article>
     </section>
 
     <p class="footer-note">
-      <strong>Root cause:</strong> Tally is built for accounting compliance, not high-frequency quote edits on WhatsApp. BillBuddy is the ops layer that stays aligned with Tally.
+      <strong>Root cause:</strong> Tally is built for accounting compliance, not high-frequency quote edits on WhatsApp. BillMiner is the ops layer that stays aligned with Tally.
     </p>
-    <div class="slide-num">02 · Why BillBuddy</div>
+    <div class="slide-num">02 · Why BillMiner</div>
   </div>
     </section>
     <section class="deck-slide" id="slide-architecture" data-slide="2" aria-hidden="true">
 <div class="slide-inner">
     <div class="brand-bar">
-      <img class="billbuddy-logo" src="assets/billbuddy-logo.png" alt="BillBuddy" />
+      <img class="billbuddy-logo" src="assets/billbuddy-logo.png" alt="BillMiner" />
       <span class="vs-chip"><span></span> works with</span>
       <img class="tally-logo" src="assets/tally-logo.svg" alt="Tally" />
     </div>
 
     <header class="title-bubble">
-      <h1>How the pieces connect</h1>
-      <p class="sub" id="subtitle">BillBuddy sits in the middle — WhatsApp, payments, books, and sync stay aligned without the clerk juggling systems.</p>
+      <h1>The XML → Edge D1 → Open-Weight LLM &amp; Agent Pipeline</h1>
+      <p class="sub" id="subtitle">BillMiner sits in the middle — WhatsApp, payments, books, and sync stay aligned without the clerk juggling systems.</p>
     </header>
 
     <section class="diagram" id="diagram" aria-label="Architecture diagram">
@@ -2629,7 +2629,7 @@
         <g id="flushLayer"></g>
 
         <!-- Smooth packets: longer duration + spline easing + fade -->
-        <!-- WhatsApp ↔ BillBuddy -->
+        <!-- WhatsApp ↔ BillMiner -->
         <g class="packet">
           <circle class="packet-halo" r="9" opacity="0">
             <animate attributeName="opacity" values="0;0.55;0.55;0" keyTimes="0;0.12;0.88;1" dur="5.8s" repeatCount="indefinite" />
@@ -2659,7 +2659,7 @@
           </circle>
         </g>
 
-        <!-- PhonePe ↔ BillBuddy -->
+        <!-- PhonePe ↔ BillMiner -->
         <g class="packet">
           <circle class="packet-pay-halo" r="9" opacity="0">
             <animate attributeName="opacity" values="0;0.55;0.55;0" keyTimes="0;0.12;0.88;1" dur="6.2s" begin="0.8s" repeatCount="indefinite" />
@@ -2713,7 +2713,7 @@
           </circle>
         </g>
 
-        <!-- BillBuddy ↔ Firestore (always on — independent of Tally) -->
+        <!-- BillMiner ↔ Firestore (always on — independent of Tally) -->
         <g class="packet">
           <circle class="packet-halo" r="9" opacity="0">
             <animate attributeName="opacity" values="0;0.55;0.55;0" keyTimes="0;0.12;0.88;1" dur="6.4s" begin="1.1s" repeatCount="indefinite" />
@@ -2737,7 +2737,7 @@
           </circle>
         </g>
 
-        <!-- BillBuddy ↔ Tally (red) — paused when offline -->
+        <!-- BillMiner ↔ Tally (red) — paused when offline -->
         <g class="packet packet-tally">
           <circle class="packet-tally-halo" r="9" opacity="0">
             <animate attributeName="opacity" values="0;0.55;0.55;0" keyTimes="0;0.12;0.88;1" dur="6.8s" begin="0.6s" repeatCount="indefinite" />
@@ -2788,7 +2788,7 @@
 
       <div class="pay-label">Pay</div>
       <div class="sync-label" id="syncLabel">⟷ Sync</div>
-      <div class="queue-banner" id="queueBanner">Bills queued in BillBuddy · submit when Tally is back</div>
+      <div class="queue-banner" id="queueBanner">Bills queued in BillMiner · submit when Tally is back</div>
 
       <div class="nodes">
         <article class="node n-whatsapp">
@@ -2806,8 +2806,8 @@
         <article class="node hub n-hub">
           <span class="queue-badge" id="queueBadge" aria-hidden="true">0</span>
           <div class="icon"><img src="assets/billbuddy-logo.png" alt="" /></div>
-          <h2>BillBuddy</h2>
-          <p id="hubCopy">Orders, customers, process to books</p>
+          <h2>BillMiner</h2>
+          <p id="hubCopy">Edge D1 (~25ms) · Gemma 4 · Rao Agent · XML Queue</p>
           <div class="pill" id="hubPill">Hub</div>
         </article>
 
@@ -2824,7 +2824,7 @@
             <span class="tally-badge"><img src="assets/tally-logo.svg" alt="" /></span>
           </div>
           <h2>Tally</h2>
-          <p>Accounting books &amp; vouchers</p>
+          <p>XML/HTTP :9000 · ≤500 KB TDL Jobs</p>
           <div class="status-pill" id="tallyStatus"><span class="dot"></span> <span id="tallyStatusText">Online</span></div>
           <div class="hint" id="tallyHint">Click → go offline</div>
         </article>
@@ -2833,8 +2833,8 @@
           <div class="icon">
             <img src="assets/firebase.svg" alt="" />
           </div>
-          <h2>Firestore</h2>
-          <p>Product &amp; customer data</p>
+          <h2>Firestore + D1</h2>
+          <p>~25ms/line Edge Lookup &amp; Catalogue</p>
         </article>
       </div>
 
@@ -2843,24 +2843,24 @@
     </section>
 
     <p class="footer-note" id="footerNote">
-      <strong>Black box on purpose:</strong> clerks work in BillBuddy and WhatsApp — Tally stays the books, sync stays under the hood.
+      <strong>Black box on purpose:</strong> clerks work in BillMiner and WhatsApp — Tally stays the books, sync stays under the hood.
     </p>
   </div>
     </section>
     <section class="deck-slide" id="slide-data" data-slide="3" aria-hidden="true">
 <div class="slide-inner">
     <div class="brand-bar">
-      <img class="billbuddy-logo" src="assets/billbuddy-logo.png" alt="BillBuddy" />
+      <img class="billbuddy-logo" src="assets/billbuddy-logo.png" alt="BillMiner" />
       <span style="color:rgba(255,255,255,0.55);font-size:0.58rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;">NEW CUSTOMER SALE</span>
       <img class="tally-logo" src="assets/tally-logo.svg" alt="Tally" />
     </div>
 
     <header class="title-bubble">
       <h1>Reduce Bottlenecks & Entry Errors</h1>
-      <p class="sub">Every first-time buyer in Tally means three separate screens. Busy clerks skip real names. BillBuddy captures the full sale once — then posts to Tally.</p>
+      <p class="sub">Every first-time buyer in Tally means three separate screens. Busy clerks skip real names. BillMiner captures the full sale once — then posts to Tally.</p>
     </header>
 
-    <section class="compare" aria-label="Tally three steps vs BillBuddy one step">
+    <section class="compare" aria-label="Tally three steps vs BillMiner one step">
       <!-- BEFORE: 3 steps -->
       <article class="flow-panel before">
         <div class="flow-head">
@@ -2926,7 +2926,7 @@
       <article class="flow-panel after">
         <div class="flow-head">
           <div>
-            <div class="tag">After — BillBuddy</div>
+            <div class="tag">After — BillMiner</div>
             <h2>One sale screen → Process to Tally</h2>
           </div>
           <div class="step-count">
@@ -2966,7 +2966,7 @@
 
         <ol class="steps">
           <li><strong>Real customer</strong> captured on the first quote — not a placeholder</li>
-          <li><strong>Process once</strong> — BillBuddy writes the matching Tally entries</li>
+          <li><strong>Process once</strong> — BillMiner writes the matching Tally entries</li>
         </ol>
       </article>
     </section>
@@ -2976,7 +2976,7 @@
       <div class="value-sync">
         <div class="block-head">
           <div class="tag">Structured data layer</div>
-          <h2>From Tally exports to a query-ready database</h2>
+          <h2>From ~13,000 Messy Tally XML Names to Edge D1 + Family/Variant Cards</h2>
         </div>
 
         <div class="reports-compare">
@@ -2989,7 +2989,7 @@
             </div>
           </div>
           <div class="report-box good">
-            <div class="lbl">BillBuddy DB</div>
+            <div class="lbl">BillMiner DB</div>
             <div class="clean-rows">
               <span>Dr. Mehta</span> · Fuji IX · ₹2,400<br>
               <span>Smile Care</span> · ProTaper · ₹8,900<br>
@@ -3009,22 +3009,22 @@
           <article class="benefit">
             <div class="ico">📊</div>
             <div>
-              <h4>Easy data analysis</h4>
-              <p>Customers & items in one place — live dashboards without Excel pivots.</p>
+              <h4>~25 ms/line Edge D1</h4>
+              <p>Cloudflare Workers + D1 answer order lookups at $0 token cost in ~25 ms.</p>
             </div>
           </article>
           <article class="benefit">
             <div class="ico">🔧</div>
             <div>
-              <h4>Easy system building</h4>
-              <p>APIs and a clean schema — build custom tools & reorder alerts fast.</p>
+              <h4>Open-Weight Cost Cut</h4>
+              <p>Gemma 4 in prod + Gemma 2B LoRA judge replace costly frontier API calls.</p>
             </div>
           </article>
           <article class="benefit">
             <div class="ico">💬</div>
             <div>
-              <h4>WhatsApp API</h4>
-              <p>Quotes, invoices & pay links with per-customer message history.</p>
+              <h4>Audited AI Agents</h4>
+              <p>Rao invoicing agent + nightly cron &amp; Claude catalogue repair with undo.</p>
             </div>
           </article>
         </div>
@@ -3072,17 +3072,17 @@
           <span class="spark"></span>
           <span>AI Automations</span>
         </div>
-        <h2>Three <em>AI</em> tools from quotes, messages &amp; Tally history</h2>
-        <p>Database → AI tables → clerk reviews → Tally.</p>
+        <h2>Autonomous <em>AI Agents</em> &amp; Open-Weight Models (Gemma 4 + LoRA)</h2>
+        <p>Edge D1 (~25ms/line) → Gemma 4 / LoRA &amp; Dual-Reader OCR → Arithmetic &amp; Human Guards → Paisa-Exact Tally XML.</p>
       </header>
 
       <div class="ai-cards">
         <!-- 1: Handwritten note → Sarvam AI → Quote -->
         <article class="ai-card ai-reveal">
           <div class="ai-card-head">
-            <span class="auto-tag">AI automation 1</span>
-            <h3>Message → Invoice</h3>
-            <p class="sub">Handwritten note photo → matched quote line items</p>
+            <span class="auto-tag">AI Agent 1 · ~25 ms/line</span>
+            <h3>Seller Detect + Rao Agent</h3>
+            <p class="sub">WA (98% top-3), Gmail &amp; notes → live bill lines</p>
           </div>
           <div class="ai-card-body">
             <div class="flow-stack">
@@ -3090,27 +3090,27 @@
                 <img src="assets/handwritten-note-dr-sharma.png" alt="Handwritten note from Dr. Sharma" />
               </div>
               <div class="ai-bridge sarvam">
-                <span class="ai-pill">Sarvam AI</span>
+                <span class="ai-pill">Edge D1 + Gemma 2B LoRA + Rao</span>
                 <span class="arrow">↓</span>
               </div>
               <div class="pane quote">
-                <img src="assets/quote-TEMP-633519-items.png" alt="BillBuddy quote TEMP-633519" />
+                <img src="assets/quote-TEMP-633519-items.png" alt="BillMiner quote TEMP-633519" />
               </div>
             </div>
           </div>
-          <p class="ai-card-foot"><strong>Vision AI</strong> — reads handwriting, clerk reviews, sends quote.</p>
+          <p class="ai-card-foot"><strong>Rao &amp; Seller Detect</strong> — ~25 ms/line edge match + inline variant picker.</p>
         </article>
 
         <!-- 2: Catalog builder + AI research -->
         <article class="ai-card ai-reveal">
           <div class="ai-card-head">
-            <span class="auto-tag">AI automation 2</span>
-            <h3>Catalog builder</h3>
-            <p class="sub">3 Tally names → AI research → variants + images</p>
+            <span class="auto-tag">AI Agent 2 · ~13,000 Items</span>
+            <h3>"Nothing Is Lost" Catalogue</h3>
+            <p class="sub">13k Tally names (3,256 dead audited) → family/variant cards</p>
           </div>
           <div class="ai-card-body">
             <div class="cat-fill">
-              <div class="research-banner">✦ AI research — manufacturer specs ✦</div>
+              <div class="research-banner">✦ Brave Search + LLM + Staff Micro-Questions (22% gaps) ✦</div>
               <div class="cat-lanes">
                 <div class="cat-lane">
                   <div class="root">Mani Bur<span class="arrow-down">↓</span></div>
@@ -3140,15 +3140,15 @@
               </div>
             </div>
           </div>
-          <p class="ai-card-foot"><strong>AI research</strong> — messy ledgers → structured catalog variants.</p>
+          <p class="ai-card-foot"><strong>Move, Never Delete</strong> — verified specs + $0.007 real product photos.</p>
         </article>
 
         <!-- 3: Bill → OCR → Tally -->
         <article class="ai-card ai-reveal">
           <div class="ai-card-head">
-            <span class="auto-tag">AI automation 3</span>
-            <h3>Purchase bill scan</h3>
-            <p class="sub">Printed supplier bill → purchase draft</p>
+            <span class="auto-tag">AI Agent 3 · 92% (291/317 Bills)</span>
+            <h3>Dual-Reader Bill Scanner</h3>
+            <p class="sub">Vision Layout Reader + LlamaParse + Nightly Cron</p>
           </div>
           <div class="ai-card-body">
             <div class="flow-stack">
@@ -3170,7 +3170,7 @@
                 </div>
               </div>
               <div class="ai-bridge">
-                <span class="ai-pill">AI · OCR + resolve</span>
+                <span class="ai-pill">Dual OCR + Math Check + Gemma 4</span>
                 <span class="arrow">↓</span>
               </div>
               <div class="pane">
@@ -3192,13 +3192,13 @@
               </div>
             </div>
           </div>
-          <p class="ai-card-foot"><strong>AI OCR</strong> — lines hit catalog variants and post to Tally.</p>
+          <p class="ai-card-foot"><strong>Self-Learning Loop</strong> — nightly cron + Claude agent fixes cards with undo.</p>
         </article>
       </div>
     </section>
 
     <p class="foundation ai-reveal">
-      <strong>All AI automations</strong> run on BillBuddy data — new AI tables, human review, then Tally.
+      <strong>Open-Weight Cost Reduction &amp; Agent Guardrails:</strong> Replaced costly frontier APIs with <strong>Gemma 4</strong> in prod + <strong>Gemma 2B LoRA</strong> judge, backed by arithmetic total checks and reversible Claude audit routines.
     </p>
 
     <div class="slide-num">05 · AI</div>
@@ -3207,13 +3207,13 @@
     <section class="deck-slide" id="slide-improvements" data-slide="5" aria-hidden="true">
 <div class="slide-inner">
     <div class="brand-bar">
-      <img class="billbuddy-logo" src="assets/billbuddy-logo.png" alt="BillBuddy" />
+      <img class="billbuddy-logo" src="assets/billbuddy-logo.png" alt="BillMiner" />
       <span style="color:rgba(255,255,255,0.55);font-size:0.58rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;">IMPACT</span>
     </div>
 
     <header class="title-bubble" style="padding: 0.3rem 1.15rem 0.35rem;">
       <h1 style="font-size: clamp(1.15rem, 2vw, 1.45rem);">Operational Transformation</h1>
-      <p class="sub" style="margin-top:0.15rem; font-size: clamp(0.72rem, 0.95vw, 0.82rem);">How BillBuddy systematically solves 7 major Tally bottlenecks across sales, WhatsApp, catalog, and cloud operations.</p>
+      <p class="sub" style="margin-top:0.15rem; font-size: clamp(0.72rem, 0.95vw, 0.82rem);">How BillMiner combines Open-Weight Models (Gemma 4 / LoRA), Autonomous Agents (Rao &amp; Nightly Cron), and Edge D1 (~25ms/line) beside Tally Prime.</p>
     </header>
 
     <div class="improvements-grid">
@@ -3223,7 +3223,7 @@
         <div class="imp-card-text">
           <h3>Customer Onboarding</h3>
           <div class="imp-row bad"><span class="icon">✕</span> <span><strong>Tally:</strong> 3 complex screens. Clerks skip and select "Cash" ledger to save time, losing customer data.</span></div>
-          <div class="imp-row good"><span class="icon">✓</span> <span><strong>BillBuddy:</strong> 1 step. Real customer profiles (name, phone, GST) captured naturally during quote creation.</span></div>
+          <div class="imp-row good"><span class="icon">✓</span> <span><strong>BillMiner:</strong> 1 step. Real customer profiles (name, phone, GST) captured naturally during quote creation.</span></div>
         </div>
         <div class="diagram-mini">
           <svg viewBox="0 0 180 75" preserveAspectRatio="xMidYMid meet">
@@ -3242,8 +3242,8 @@
             <!-- Divider -->
             <line x1="6" y1="36" x2="174" y2="36" stroke="#334155" stroke-dasharray="2 2"/>
 
-            <!-- BillBuddy Bottom -->
-            <text x="6" y="56" font-size="7" fill="#5eead4" font-weight="bold">BILLBUDDY</text>
+            <!-- BillMiner Bottom -->
+            <text x="6" y="56" font-size="7" fill="#5eead4" font-weight="bold">BILLMINER</text>
             <rect x="58" y="43" width="65" height="24" rx="4" fill="#064e3b" stroke="#34d399" stroke-width="1.5"/>
             <circle cx="68" cy="55" r="5" fill="#34d399"/>
             <text x="78" y="52" font-size="6" fill="#ccfbf1" font-weight="bold">John Doe</text>
@@ -3260,7 +3260,7 @@
         <div class="imp-card-text">
           <h3>Quote-to-Cash Workflow</h3>
           <div class="imp-row bad"><span class="icon">✕</span> <span><strong>Tally:</strong> Quote made in Excel → PDF sent on WA → Clerk re-types quote into Tally manually.</span></div>
-          <div class="imp-row good"><span class="icon">✓</span> <span><strong>BillBuddy:</strong> Closed loop. Quote generated directly in WhatsApp converts to invoice in 1 click.</span></div>
+          <div class="imp-row good"><span class="icon">✓</span> <span><strong>BillMiner:</strong> Closed loop. Quote generated directly in WhatsApp converts to invoice in 1 click.</span></div>
         </div>
         <div class="diagram-mini">
           <svg viewBox="0 0 180 75" preserveAspectRatio="xMidYMid meet">
@@ -3280,8 +3280,8 @@
             <!-- Divider -->
             <line x1="6" y1="36" x2="174" y2="36" stroke="#334155" stroke-dasharray="2 2"/>
 
-            <!-- BillBuddy Bottom -->
-            <text x="6" y="56" font-size="7" fill="#5eead4" font-weight="bold">BILLBUDDY</text>
+            <!-- BillMiner Bottom -->
+            <text x="6" y="56" font-size="7" fill="#5eead4" font-weight="bold">BILLMINER</text>
             <rect x="55" y="44" width="26" height="20" rx="3" fill="#0f172a" stroke="#34d399"/>
             <text x="68" y="56" font-size="6" fill="#6ee7b7" text-anchor="middle">QUOTE</text>
             <path d="M 81 54 L 98 54" stroke="#34d399" stroke-width="2"/>
@@ -3297,7 +3297,7 @@
         <div class="imp-card-text">
           <h3>Customer Communications</h3>
           <div class="imp-row bad"><span class="icon">✕</span> <span><strong>Tally:</strong> Disconnected. Negotiation chats live on personal clerk phones and disappear.</span></div>
-          <div class="imp-row good"><span class="icon">✓</span> <span><strong>BillBuddy:</strong> Official WA API. Every quote, reply, and invoice is linked to customer history.</span></div>
+          <div class="imp-row good"><span class="icon">✓</span> <span><strong>BillMiner:</strong> Official WA API. Every quote, reply, and invoice is linked to customer history.</span></div>
         </div>
         <div class="diagram-mini">
           <svg viewBox="0 0 180 75" preserveAspectRatio="xMidYMid meet">
@@ -3313,8 +3313,8 @@
             <!-- Divider -->
             <line x1="6" y1="36" x2="174" y2="36" stroke="#334155" stroke-dasharray="2 2"/>
 
-            <!-- BillBuddy Bottom -->
-            <text x="6" y="56" font-size="7" fill="#5eead4" font-weight="bold">BILLBUDDY</text>
+            <!-- BillMiner Bottom -->
+            <text x="6" y="56" font-size="7" fill="#5eead4" font-weight="bold">BILLMINER</text>
             <rect x="55" y="44" width="22" height="22" rx="3" fill="#064e3b" stroke="#34d399"/>
             <text x="66" y="58" font-size="8" fill="#25D366" text-anchor="middle">💬</text>
             <circle class="c3-sync-msg" cx="80" cy="55" r="3" fill="#34d399"/>
@@ -3330,7 +3330,7 @@
         <div class="imp-card-text">
           <h3>Data & Analytics</h3>
           <div class="imp-row bad"><span class="icon">✕</span> <span><strong>Tally:</strong> No real-time reporting. Must export ledgers to Excel and build manual pivots.</span></div>
-          <div class="imp-row good"><span class="icon">✓</span> <span><strong>BillBuddy:</strong> Cloud Postgres database enables real-time executive dashboards & custom APIs.</span></div>
+          <div class="imp-row good"><span class="icon">✓</span> <span><strong>BillMiner:</strong> Cloud Postgres database enables real-time executive dashboards & custom APIs.</span></div>
         </div>
         <div class="diagram-mini">
           <svg viewBox="0 0 180 75" preserveAspectRatio="xMidYMid meet">
@@ -3348,8 +3348,8 @@
             <!-- Divider -->
             <line x1="6" y1="36" x2="174" y2="36" stroke="#334155" stroke-dasharray="2 2"/>
 
-            <!-- BillBuddy Bottom -->
-            <text x="6" y="56" font-size="7" fill="#5eead4" font-weight="bold">BILLBUDDY</text>
+            <!-- BillMiner Bottom -->
+            <text x="6" y="56" font-size="7" fill="#5eead4" font-weight="bold">BILLMINER</text>
             <rect x="55" y="44" width="70" height="24" rx="3" fill="#0f172a" stroke="#34d399" stroke-width="1.5"/>
             <text x="90" y="52" font-size="5" fill="#5eead4" text-anchor="middle" font-weight="bold">LIVE DASHBOARD</text>
             <rect class="c4-live-chart" x="62" y="56" width="6" height="10" fill="#34d399"/>
@@ -3365,7 +3365,7 @@
         <div class="imp-card-text">
           <h3>Product Catalog (AI)</h3>
           <div class="imp-row bad"><span class="icon">✕</span> <span><strong>Tally:</strong> Messy ledger text ("10mm blk shirt"), no images, no structured variant groups.</span></div>
-          <div class="imp-row good"><span class="icon">✓</span> <span><strong>BillBuddy:</strong> AI cleans raw strings into a rich catalog with specs, images, and variants.</span></div>
+          <div class="imp-row good"><span class="icon">✓</span> <span><strong>BillMiner:</strong> AI cleans raw strings into a rich catalog with specs, images, and variants.</span></div>
         </div>
         <div class="diagram-mini">
           <svg viewBox="0 0 180 75" preserveAspectRatio="xMidYMid meet">
@@ -3403,7 +3403,7 @@
         <div class="imp-card-text">
           <h3>Purchase & Batch/Expiry (AI)</h3>
           <div class="imp-row bad"><span class="icon">✕</span> <span><strong>Tally:</strong> Manual typing of line items from supplier bills. Clerks skip batch/expiry to save time.</span></div>
-          <div class="imp-row good"><span class="icon">✓</span> <span><strong>BillBuddy:</strong> AI OCR scans printed bills, extracting items, batch numbers, and expiry dates.</span></div>
+          <div class="imp-row good"><span class="icon">✓</span> <span><strong>BillMiner:</strong> AI OCR scans printed bills, extracting items, batch numbers, and expiry dates.</span></div>
         </div>
         <div class="diagram-mini">
           <svg viewBox="0 0 180 75" preserveAspectRatio="xMidYMid meet">
@@ -3436,7 +3436,7 @@
         <div class="imp-card-text" style="padding-right: 1rem;">
           <h3>Cloud Infrastructure vs Structured Repository</h3>
           <div class="imp-row bad"><span class="icon">✕</span> <span><strong>Tally Cloud:</strong> Streams a remote VM video feed of desktop `.exe`. High bandwidth lag, unusable mobile UI, zero system APIs.</span></div>
-          <div class="imp-row good"><span class="icon">✓</span> <span><strong>BillBuddy:</strong> Cloud-native Postgres repository with REST APIs. Native mobile UX, multi-device scale, and instant 3rd-party integration.</span></div>
+          <div class="imp-row good"><span class="icon">✓</span> <span><strong>BillMiner:</strong> Cloud-native Postgres repository with REST APIs. Native mobile UX, multi-device scale, and instant 3rd-party integration.</span></div>
         </div>
         <div class="diagram-mini" style="width: 340px;">
           <svg viewBox="0 0 340 75" preserveAspectRatio="xMidYMid meet">
@@ -3455,8 +3455,8 @@
             <!-- Divider -->
             <line x1="150" y1="10" x2="150" y2="68" stroke="#334155" stroke-dasharray="3 3" stroke-width="1.5"/>
 
-            <!-- BillBuddy Side -->
-            <text x="185" y="15" font-size="7" fill="#5eead4" font-weight="bold">BILLBUDDY REPO (REST APIs)</text>
+            <!-- BillMiner Side -->
+            <text x="185" y="15" font-size="7" fill="#5eead4" font-weight="bold">BILLMINER REPO (REST APIs)</text>
             <rect x="165" y="22" width="26" height="42" rx="4" fill="#064e3b" stroke="#34d399" stroke-width="1.5"/>
             <text x="178" y="40" font-size="8" fill="#6ee7b7" text-anchor="middle" font-weight="bold">DB</text>
             <text x="178" y="52" font-size="5" fill="#34d399" text-anchor="middle">API</text>
@@ -3702,15 +3702,15 @@
 
       const copy = {
         online: {
-          subtitle: 'BillBuddy sits in the middle — WhatsApp, payments, books, and sync stay aligned without the clerk juggling systems.',
-          hub: 'Orders, customers, process to books', pill: 'Hub',
-          footer: '<strong>Black box on purpose:</strong> clerks work in BillBuddy and WhatsApp — Tally stays the books, sync stays under the hood.',
+          subtitle: 'BillMiner sits in the middle — WhatsApp, payments, books, and sync stay aligned without the clerk juggling systems.',
+          hub: 'Edge D1 (~25ms) · Gemma 4 · Rao Agent · XML Queue', pill: 'Hub',
+          footer: '<strong>Black box on purpose:</strong> clerks work in BillMiner and WhatsApp — Tally stays the books, sync stays under the hood.',
           legend: 'Live sync · data flowing both ways', status: 'Online', hint: 'Click → go offline', title: 'Click to take Tally offline',
         },
         offline: {
-          subtitle: 'Tally is offline — BillBuddy keeps working. New bills queue locally and submit when books come back.',
+          subtitle: 'Tally is offline — BillMiner keeps working. New bills queue locally and submit when books come back.',
           hub: 'Working independently · bills queued for Tally', pill: 'Queuing',
-          footer: '<strong>Tally offline:</strong> clerks keep quoting, collecting, and creating bills in BillBuddy — submission waits in queue until Tally is back.',
+          footer: '<strong>Tally offline:</strong> clerks keep quoting, collecting, and creating bills in BillMiner — submission waits in queue until Tally is back.',
           legend: 'Independent mode · bills queued for Tally', status: 'Offline', hint: 'Click → bring online', title: 'Click to bring Tally back online',
         },
       };
@@ -3722,7 +3722,7 @@
           queueBanner.textContent = queued === 0 ? 'All queued bills submitted to Tally' : (queued === 1 ? 'Submitting 1 bill to Tally…' : 'Submitting ' + queued + ' bills to Tally…');
           return;
         }
-        queueBanner.textContent = queued === 1 ? '1 bill queued in BillBuddy · submit when Tally is back' : queued + ' bills queued in BillBuddy · submit when Tally is back';
+        queueBanner.textContent = queued === 1 ? '1 bill queued in BillMiner · submit when Tally is back' : queued + ' bills queued in BillMiner · submit when Tally is back';
       }
 
       function startQueueing() {

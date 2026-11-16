@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Why BillBuddy — Before & After</title>
+  <title>Why BillMiner — Before & After</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,500;6..72,600;6..72,700&display=swap" rel="stylesheet" />
@@ -246,13 +246,13 @@
 <body>
   <main class="slide">
     <div class="brand-bar">
-      <img class="billbuddy-logo" src="assets/billbuddy-logo.png" alt="BillBuddy" />
+      <img class="billbuddy-logo" src="assets/billbuddy-logo.png" alt="BillMiner" />
       <span class="vs-chip"><span></span> works with</span>
       <img class="tally-logo" src="assets/tally-logo.svg" alt="Tally" />
     </div>
 
     <header class="title-bubble">
-      <h1>Why we built separate software</h1>
+      <h1>Why We Built BillMiner Beside Tally (XML In, Intelligence Out)</h1>
       <p class="sub">Tally is the books — not a clerk’s quote desk. Every WhatsApp ask became repeated Tally lookups, PDF printing, and rework.</p>
     </header>
 
@@ -375,8 +375,8 @@
       <!-- AFTER -->
       <article class="flow-panel after">
         <div class="flow-head">
-          <div class="tag">After — BillBuddy</div>
-          <h2>One screen → QUOTE on WhatsApp → pay → Process to Tally</h2>
+          <div class="tag">After — BillMiner</div>
+          <h2>Seller Detect (~25 ms/line) + Rao Agent → Quote → Paisa-Exact Tally XML</h2>
         </div>
 
         <div class="flow-diagram" aria-hidden="true">
@@ -436,8 +436,8 @@
             </div>
             <div class="fnode hub a-bb">
               <div class="icon"><img src="assets/billbuddy-logo.png" alt="" /></div>
-              <h3>BillBuddy</h3>
-              <p>Catalog + customer ready</p>
+              <h3>BillMiner</h3>
+              <p>Edge D1 + Gemma 4 + Rao</p>
             </div>
             <div class="fnode a-quote">
               <h3>QUOTE</h3>
@@ -452,18 +452,18 @@
         </div>
 
         <ol class="steps">
-          <li><strong>Synced data</strong> — items, customers, rates already there</li>
-          <li>Build quote in <strong>BillBuddy</strong> — no Tally hunting</li>
-          <li>Send <strong>QUOTE</strong> on WhatsApp + <strong>pay link</strong></li>
-          <li><strong>Process</strong> once — matching voucher in Tally</li>
+          <li><strong>Compact TDL XML sync (≤500 KB jobs)</strong> — ~13,000 items synced without disturbing clerks</li>
+          <li><strong>Seller Detect (~25 ms/line) &amp; Rao Agent</strong> — 98% top-3 accuracy on WhatsApp orders</li>
+          <li><strong>Open-weight Gemma 4 + Edge D1</strong> — low-cost inference with inline variant pickers</li>
+          <li><strong>Process once</strong> — posts paisa-exact XML vouchers back into Tally Prime</li>
         </ol>
       </article>
     </section>
 
     <p class="footer-note">
-      <strong>Root cause:</strong> Tally is built for accounting compliance, not high-frequency quote edits on WhatsApp. BillBuddy is the ops layer that stays aligned with Tally.
+      <strong>Root cause:</strong> Tally is built for accounting compliance, not high-frequency quote edits on WhatsApp. BillMiner is the ops layer that stays aligned with Tally.
     </p>
-    <div class="slide-num">02 · Why BillBuddy</div>
+    <div class="slide-num">02 · Why BillMiner</div>
   </main>
 </body>
 </html>
