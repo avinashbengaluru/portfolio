@@ -1,588 +1,691 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Avinash Immaneni | BillMiner — AI & XML-to-LLM Operations Platform</title>
-  <meta name="description" content="Portfolio of Avinash Immaneni — Creator of BillMiner: From Tally Prime XML to an LLM-run distribution business with Dual-Reader OCR, Edge Seller Detect (~25 ms/line), Rao Invoicing Assistant, and Self-Learning Catalog.">
-  
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
-  
-  <style>
-    :root {
-      --bg: #050b14;
-      --card-bg: rgba(13, 25, 41, 0.78);
-      --card-border: rgba(255, 255, 255, 0.1);
-      --cyan: #2dd4bf;
-      --cyan-bright: #5eead4;
-      --purple: #a855f7;
-      --purple-bright: #c084fc;
-      --orange: #fb923c;
-      --text: #f8fafc;
-      --subtext: #94a3b8;
-    }
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>BillMiner</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Avinash Immaneni — BillMiner: a legacy ERP's XML turned into an LLM-run distribution business.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Fraunces:opsz,wght@9..144,600;9..144,800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* Layout: one long pipeline. Dark "machine" half (XML → models → agents), then the page opens into the ivory storefront half the customer sees. */
+:root{
+  --ink:#0C131E; --ink-2:#121C2B; --ink-3:#18253A; --line:#26354D;
+  --fg:#ECE6DA; --muted:#93A0B4; --dim:#5F6E86;
+  --xml:#73D2C3; --gold:#E0A944; --rose:#E98A63; --ok:#7BD69B;
+  --ivory:#F2EADC; --ivory-2:#E9DEC9; --ivory-ink:#2A221A; --ivory-muted:#6E6253; --ivory-gold:#A8823A;
+  --f-display:"Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --f-body:"Inter", "Segoe UI", system-ui, sans-serif;
+  --f-mono:"JetBrains Mono", ui-monospace, Consolas, monospace;
+  --f-serif:"Fraunces", Georgia, "Times New Roman", serif;
+  --wrap:1180px;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{background:var(--ink);color:var(--fg);font:16px/1.6 var(--f-body);-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--ink)}
+a{color:inherit}
+.wrap{max-width:var(--wrap);margin:0 auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+h1,h2,h3{font-family:var(--f-display);text-wrap:balance;margin:0;letter-spacing:-.02em}
+p{margin:0}
+.eyebrow{font:600 12px/1.2 var(--f-mono);letter-spacing:.14em;text-transform:uppercase;color:var(--xml)}
+.mono{font-family:var(--f-mono)}
+section{padding-block:96px}
+.sec-head{display:grid;gap:14px;max-width:760px;margin-bottom:44px}
+.sec-head h2{font-size:clamp(32px,4.6vw,54px);line-height:1.02;font-weight:800}
+.sec-head p{color:var(--muted);font-size:18px;max-width:64ch}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: 'Inter', system-ui, -apple-system, sans-serif;
-      line-height: 1.6;
-      overflow-x: hidden;
-      background-image: 
-        radial-gradient(circle at 15% 15%, rgba(168, 85, 247, 0.1) 0%, transparent 50%),
-        radial-gradient(circle at 85% 65%, rgba(45, 212, 191, 0.1) 0%, transparent 50%);
-    }
+/* nav */
+nav.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:color-mix(in srgb,var(--ink) 86%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+nav.top .wrap{display:flex;align-items:center;gap:20px;height:58px}
+.brand{font:800 18px var(--f-display);letter-spacing:-.02em;display:flex;align-items:center;gap:10px;text-decoration:none}
+.brand i{width:22px;height:22px;border-radius:6px;background:conic-gradient(from 210deg,var(--xml),var(--gold),var(--rose),var(--xml));display:block}
+nav.top ul{display:flex;gap:22px;list-style:none;margin:0 0 0 auto;padding:0;font-size:14px;color:var(--muted)}
+nav.top ul a{text-decoration:none}
+nav.top ul a:hover{color:var(--fg)}
+@media (max-width:760px){nav.top ul{display:none}}
 
-    .container {
-      max-width: 1140px;
-      margin: 0 auto;
-      padding: 2.5rem 1.2rem;
-    }
+/* hero */
+.hero{padding-block:72px 40px;position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:-20% -10% auto auto;width:720px;height:720px;background:radial-gradient(closest-side,rgba(115,210,195,.13),transparent);pointer-events:none}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:48px;align-items:center}
+.hero-grid > *,.xform-body > *,.dual > *,.loop > *,.messy > *{min-width:0}
+.hero h1{font-size:clamp(42px,6.4vw,84px);line-height:.95;font-weight:800}
+.hero h1 .x{font-family:var(--f-mono);font-weight:600;color:var(--xml);font-size:.78em;letter-spacing:-.04em}
+.hero h1 .l{background:linear-gradient(90deg,var(--gold),var(--rose));-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero .lede{margin-top:24px;font-size:19px;color:#C9C3B7;max-width:58ch}
+.hero .who{margin-top:28px;display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;font-size:14px;color:var(--muted)}
+.hero .who b{color:var(--fg);font-weight:600}
+.hero .who > *{max-width:100%}
+.hero .who .pill{white-space:normal;text-align:left}
+.pill{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);border-radius:999px;padding:5px 12px;font:500 12px var(--f-mono);color:var(--muted)}
+.pill .dot{width:7px;height:7px;border-radius:50%;background:var(--ok);box-shadow:0 0 0 4px rgba(123,214,155,.15)}
+@media (max-width:920px){.hero-grid{grid-template-columns:minmax(0,1fr)}}
 
-    /* Header / Hero Section */
-    .hero {
-      text-align: center;
-      padding: 2rem 1rem 2.5rem;
-      position: relative;
-    }
+/* XML → card transformer */
+.xform{background:var(--ink-2);border:1px solid var(--line);border-radius:18px;overflow:hidden;box-shadow:0 30px 80px -30px rgba(0,0,0,.7)}
+.xform-bar{display:flex;align-items:center;gap:8px;padding:10px 14px;border-bottom:1px solid var(--line);font:500 12px var(--f-mono);color:var(--dim)}
+.xform-bar span{width:10px;height:10px;border-radius:50%;background:var(--ink-3)}
+.xform-bar em{font-style:normal;margin-left:6px}
+.xform-body{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+.xml{margin:0;padding:16px 16px 18px;font:12.5px/1.75 var(--f-mono);color:#9AA6B8;white-space:pre;overflow-x:auto;border-right:1px solid var(--line)}
+.xml .t{color:var(--xml)} .xml .v{color:var(--fg)} .xml .row{display:block;border-radius:4px;padding:0 4px;margin:0 -4px;transition:background .3s}
+.xml .row.on{background:rgba(224,169,68,.16)}
+.card{padding:16px 18px;display:grid;gap:12px;align-content:start}
+.card .k{font:600 10.5px var(--f-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--dim)}
+.card .f{display:grid;gap:3px;padding:8px 10px;border-radius:10px;border:1px solid transparent;transition:border-color .3s,background .3s}
+.card .f.on{border-color:rgba(224,169,68,.55);background:rgba(224,169,68,.07)}
+.card .val{font:600 14px var(--f-body);color:var(--fg)}
+.card .val small{display:block;font:400 12px var(--f-body);color:var(--muted)}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{font:600 11px var(--f-mono);padding:3px 8px;border-radius:6px;background:var(--ink-3);color:var(--fg)}
+.chip.g{background:rgba(123,214,155,.14);color:var(--ok)}
+.xform-foot{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;padding:10px 16px;border-top:1px solid var(--line);font:500 12px var(--f-mono);color:var(--dim)}
+.xform-foot b{color:var(--ok);font-weight:600}
+@media (max-width:560px){.xform-body{grid-template-columns:1fr}.xml{border-right:0;border-bottom:1px solid var(--line)}}
 
-    .avatar-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      background: rgba(168, 85, 247, 0.14);
-      border: 1px solid rgba(168, 85, 247, 0.4);
-      color: var(--purple-bright);
-      padding: 0.4rem 1.2rem;
-      border-radius: 50px;
-      font-size: 0.86rem;
-      font-weight: 700;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      margin-bottom: 1.2rem;
-    }
+/* stats ribbon */
+.ribbon{border-block:1px solid var(--line);background:var(--ink-2)}
+.ribbon .wrap{display:grid;grid-template-columns:repeat(5,1fr);padding-block:0}
+.stat{padding:26px 18px;border-left:1px solid var(--line);display:grid;gap:4px}
+.stat:first-child{border-left:0;padding-left:0}
+.stat b{font:800 clamp(28px,3.4vw,40px)/1 var(--f-display);letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.stat b em{font-style:normal;color:var(--gold)}
+.stat span{font-size:13px;color:var(--muted);line-height:1.35}
+@media (max-width:900px){.ribbon .wrap{grid-template-columns:repeat(2,1fr)}.stat{border-left:0;border-top:1px solid var(--line);padding-left:0}.stat:nth-child(-n+2){border-top:0}}
 
-    .hero h1 {
-      font-size: 2.9rem;
-      font-weight: 800;
-      letter-spacing: -0.02em;
-      background: linear-gradient(135deg, #ffffff 30%, #cbd5e1 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      margin-bottom: 0.5rem;
-    }
+/* diagrams */
+.diagram{background:var(--ink-2);border:1px solid var(--line);border-radius:20px;padding:22px;overflow-x:auto}
+.diagram svg{display:block;min-width:900px;width:100%;height:auto}
+.diagram text{font-family:var(--f-body)}
+.legend{display:flex;flex-wrap:wrap;gap:8px 22px;margin-top:16px;font-size:13px;color:var(--muted)}
+.legend i{display:inline-block;width:18px;height:3px;border-radius:2px;vertical-align:middle;margin-right:8px}
+.notes{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-top:36px}
+.note h3{font-size:19px;font-weight:700;margin-bottom:8px}
+.note p{color:var(--muted);font-size:15px}
+.note .mono{color:var(--xml);font-size:12px;display:block;margin-bottom:10px;letter-spacing:.06em}
+@media (max-width:860px){.notes{grid-template-columns:1fr}}
 
-    .hero h2 {
-      font-size: 1.32rem;
-      font-weight: 600;
-      color: var(--cyan-bright);
-      margin-bottom: 1rem;
-    }
+/* dual reader */
+.dual{display:grid;grid-template-columns:1.2fr 1fr;gap:40px;align-items:start}
+.bill{background:#F7F2E8;color:#2A2420;border-radius:14px;padding:18px 18px 14px;font:13px/1.5 var(--f-mono);box-shadow:0 20px 50px -20px rgba(0,0,0,.6);transform:rotate(-1.2deg)}
+.bill h4{margin:0 0 10px;font:700 12px var(--f-mono);letter-spacing:.1em;text-transform:uppercase;color:#7B6E5E;display:flex;justify-content:space-between}
+.bill table{color:#2A2420;font:inherit;width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}
+.bill td,.bill th{padding:5px 4px;border-bottom:1px dashed #D8CDBB;text-align:right}
+.bill th{font-weight:600;color:#7B6E5E;font-size:11px}
+.bill td:first-child,.bill th:first-child{text-align:left}
+.bill tfoot td{border-bottom:0;font-weight:700;padding-top:8px}
+.verdict{display:grid;gap:12px}
+.reader{border:1px solid var(--line);border-radius:14px;padding:14px 16px;background:var(--ink-2);display:grid;gap:6px}
+.reader .top{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.reader h3{font-size:16px;font-weight:700}
+.badge{font:600 11px var(--f-mono);padding:3px 8px;border-radius:999px;white-space:nowrap}
+.badge.ok{background:rgba(123,214,155,.14);color:var(--ok)}
+.badge.no{background:rgba(233,138,99,.14);color:var(--rose)}
+.reader p{font-size:14px;color:var(--muted)}
+.sum{font:600 13px var(--f-mono);color:var(--fg)}
+.rule{font:500 13px var(--f-mono);color:var(--gold);padding:12px 14px;border:1px dashed rgba(224,169,68,.5);border-radius:12px}
+@media (max-width:900px){.dual{grid-template-columns:1fr}.bill{transform:none}}
 
-    .hero p {
-      max-width: 860px;
-      margin: 0 auto 1.4rem;
-      color: var(--subtext);
-      font-size: 1.05rem;
-    }
+/* loop */
+.loop{display:grid;grid-template-columns:420px 1fr;gap:56px;align-items:center}
+.loop svg{width:100%;height:auto;max-width:420px}
+.steps{display:grid;gap:18px;counter-reset:s}
+.step{display:grid;grid-template-columns:36px 1fr;gap:14px;align-items:start}
+.step::before{counter-increment:s;content:counter(s);font:700 13px var(--f-mono);width:30px;height:30px;border-radius:50%;display:grid;place-items:center;border:1px solid var(--line);color:var(--xml)}
+.step h3{font-size:17px;font-weight:700}
+.step p{color:var(--muted);font-size:15px}
+@media (max-width:900px){.loop{grid-template-columns:1fr}.loop svg{margin:0 auto}}
 
-    .theme-banner {
-      display: inline-block;
-      background: rgba(45, 212, 191, 0.12);
-      border: 1px solid rgba(45, 212, 191, 0.35);
-      color: var(--cyan-bright);
-      padding: 0.55rem 1.2rem;
-      border-radius: 10px;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.88rem;
-      font-weight: 600;
-    }
+/* agents */
+.agents{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.agent{background:var(--ink-2);border:1px solid var(--line);border-radius:16px;padding:20px;display:grid;gap:12px;align-content:start;position:relative;overflow:hidden}
+.agent .ic{width:40px;height:40px;border-radius:11px;display:grid;place-items:center;background:var(--ink-3)}
+.agent h3{font-size:19px;font-weight:700}
+.agent p{font-size:14px;color:var(--muted)}
+.agent .guard{font:500 12px/1.5 var(--f-mono);color:var(--xml);border-top:1px solid var(--line);padding-top:10px}
+@media (max-width:1000px){.agents{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:560px){.agents{grid-template-columns:1fr}}
 
-    /* Section Styling */
-    .section-title {
-      font-size: 1.7rem;
-      font-weight: 800;
-      margin: 3.2rem 0 1.4rem;
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      border-bottom: 1px solid rgba(255,255,255,0.08);
-      padding-bottom: 0.75rem;
-    }
-    .section-title span.icon {
-      font-size: 1.55rem;
-    }
+/* screens */
+.screens{display:grid;grid-template-columns:repeat(12,1fr);gap:18px}
+.shot{margin:0;background:var(--ink-2);border:1px solid var(--line);border-radius:16px;overflow:hidden;display:flex;flex-direction:column;min-width:0}
+.shot .chrome{display:flex;gap:6px;padding:9px 12px;border-bottom:1px solid var(--line)}
+.shot .chrome span{width:9px;height:9px;border-radius:50%;background:var(--ink-3)}
+.shot img{display:block;width:100%;height:auto}
+.shot figcaption{padding:12px 14px 14px;font-size:14px;color:var(--muted)}
+.shot figcaption b{color:var(--fg);font-weight:600;display:block;margin-bottom:2px}
+.s-ocr{grid-column:span 4;grid-row:span 2}
+.s-inv{grid-column:span 8}
+.s-stock{grid-column:span 4}
+.s-step{grid-column:span 4}
+.s-ocr img{max-height:640px;object-fit:cover;object-position:top}
+.s-stats{grid-column:span 4;display:grid;gap:0;border:1px solid var(--line);border-radius:16px;background:var(--ink-2);align-content:start}
+.s-stats div{padding:16px 18px;border-top:1px solid var(--line);display:grid;gap:2px}
+.s-stats div:first-child{border-top:0}
+.s-stats b{font:800 30px/1 var(--f-display);color:var(--gold);letter-spacing:-.02em}
+.s-stats span{font-size:13.5px;color:var(--muted)}
+@media (max-width:900px){.s-stats{grid-column:1/-1}}
+@media (max-width:900px){.s-ocr,.s-inv,.s-stock,.s-step{grid-column:1/-1;grid-row:auto}.s-ocr img{max-height:520px}}
 
-    /* Grid Layout */
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
-      gap: 1.4rem;
-    }
+/* human loop */
+.hl{display:grid;grid-template-columns:repeat(5,1fr);gap:0;border:1px solid var(--line);border-radius:18px;overflow:hidden;background:var(--ink-2)}
+.hl-step{padding:20px 18px;border-left:1px solid var(--line);display:grid;gap:10px;align-content:start;position:relative}
+.hl-step:first-child{border-left:0}
+.hl-step h3{font-size:17px;font-weight:700}
+.hl-step p{font-size:14px;color:var(--muted)}
+.role{font:600 11px var(--f-mono);letter-spacing:.1em;text-transform:uppercase;padding:4px 9px;border-radius:999px;width:max-content}
+.role.a{background:rgba(115,210,195,.13);color:var(--xml)}
+.role.h{background:rgba(224,169,68,.16);color:var(--gold)}
+@media (max-width:1000px){.hl{grid-template-columns:1fr 1fr}.hl-step{border-left:0;border-top:1px solid var(--line)}.hl-step:nth-child(-n+2){border-top:0}}
+@media (max-width:560px){.hl{grid-template-columns:1fr}.hl-step:nth-child(2){border-top:1px solid var(--line)}}
+.bigcost b{font:800 clamp(64px,9vw,108px)/.9 var(--f-display);letter-spacing:-.04em;background:linear-gradient(90deg,var(--xml),var(--gold));-webkit-background-clip:text;background-clip:text;color:transparent;width:max-content}
+.bigcost > span{color:#C9C3B7;font-size:16px}
 
-    /* Glass Cards */
-    .card {
-      background: var(--card-bg);
-      border: 1px solid var(--card-border);
-      border-radius: 16px;
-      padding: 1.55rem;
-      backdrop-filter: blur(12px);
-      transition: all 0.3s ease;
-      position: relative;
-      overflow: hidden;
-    }
-    .card:hover {
-      border-color: rgba(168, 85, 247, 0.45);
-      transform: translateY(-3px);
-      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.45);
-    }
+/* catalogue */
+.messy{display:grid;grid-template-columns:1fr 80px 1.1fr;gap:16px;align-items:center}
+.names{display:grid;gap:8px}
+.names code{font:500 13.5px var(--f-mono);padding:8px 12px;border-radius:10px;background:var(--ink-2);border:1px solid var(--line);color:#C9C3B7}
+.names code:nth-child(2){transform:translateX(14px)} .names code:nth-child(4){transform:translateX(8px)}
+.names code s{color:var(--rose);text-decoration-thickness:1px}
+.arrow{font:700 34px var(--f-display);color:var(--gold);text-align:center}
+.tree{background:var(--ink-2);border:1px solid var(--line);border-radius:16px;padding:18px 20px;display:grid;gap:10px}
+.tree .fam{font:700 18px var(--f-display)}
+.tree .fam small{display:block;font:500 12px var(--f-mono);color:var(--dim);letter-spacing:.06em;margin-top:2px}
+.var{display:grid;grid-template-columns:auto 1fr;gap:12px;align-items:center;padding:9px 12px;border-radius:10px;background:var(--ink-3)}
+.var b{font:700 13px var(--f-mono);color:var(--gold)}
+.var span{font-size:13.5px;color:var(--muted)}
+.var span em{font-style:normal;color:var(--fg)}
+.rulebar{margin-top:28px;display:flex;flex-wrap:wrap;gap:10px}
+@media (max-width:860px){.messy{grid-template-columns:1fr}.arrow{transform:rotate(90deg)}}
 
-    .card.cyan-accent:hover {
-      border-color: rgba(45, 212, 191, 0.45);
-    }
+/* storefront — the ivory half */
+.store{background:var(--ivory);color:var(--ivory-ink);position:relative;overflow:hidden}
+.store::before{content:"";position:absolute;inset:0;background:radial-gradient(1200px 500px at 85% 0%,rgba(168,130,58,.16),transparent 60%),radial-gradient(900px 400px at 0% 100%,rgba(42,34,26,.06),transparent 60%);pointer-events:none}
+.store .wrap{position:relative}
+.store .eyebrow{color:var(--ivory-gold)}
+.store .sec-head h2{font-family:var(--f-serif);font-weight:800;letter-spacing:-.025em;font-size:clamp(38px,5.6vw,70px)}
+.store .sec-head p{color:var(--ivory-muted)}
+.store-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:22px;align-items:start}
+.bframe{margin:0;border-radius:14px;overflow:hidden;background:#FBF7F0;box-shadow:0 1px 0 rgba(42,34,26,.08),0 30px 60px -28px rgba(42,34,26,.45);border:1px solid rgba(42,34,26,.1);min-width:0}
+.bframe .bar{display:flex;align-items:center;gap:6px;padding:9px 12px;background:#EFE6D6;border-bottom:1px solid rgba(42,34,26,.08)}
+.bframe .bar span{width:9px;height:9px;border-radius:50%;background:#D9CCB6}
+.bframe .bar em{font:500 11.5px var(--f-mono);font-style:normal;color:var(--ivory-muted);margin-left:8px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.bframe img{display:block;width:100%;height:auto}
+.bframe figcaption{padding:12px 14px;font-size:14px;color:var(--ivory-muted)}
+.bframe figcaption b{color:var(--ivory-ink)}
+.st-main{grid-column:1/9}
+.st-phones{grid-column:9/13;display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.phone{margin:0;border-radius:28px;padding:8px;background:#211A13;box-shadow:0 30px 50px -24px rgba(42,34,26,.6)}
+.phone img{display:block;width:100%;height:auto;border-radius:21px}
+.st-a{grid-column:1/7} .st-b{grid-column:7/13} .st-c{grid-column:1/13}
+.store-facts{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:44px;border-top:1px solid rgba(42,34,26,.14)}
+.store-facts div{padding:20px 18px 0 0}
+.store-facts b{display:block;font:800 clamp(30px,3.6vw,44px)/1 var(--f-serif);letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.store-facts span{font-size:14px;color:var(--ivory-muted)}
+.status{display:inline-flex;gap:8px;align-items:center;font:600 12px var(--f-mono);color:var(--ivory-gold);border:1px solid rgba(168,130,58,.4);padding:5px 12px;border-radius:999px;margin-top:6px;width:max-content}
+@media (max-width:900px){.st-main,.st-phones,.st-a,.st-b,.st-c{grid-column:1/-1}.store-facts{grid-template-columns:repeat(2,1fr)}}
 
-    .card-tag {
-      display: inline-block;
-      padding: 0.25rem 0.65rem;
-      border-radius: 6px;
-      font-size: 0.74rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      margin-bottom: 0.75rem;
-    }
-    .tag-purple { background: rgba(168, 85, 247, 0.18); color: var(--purple-bright); border: 1px solid rgba(168, 85, 247, 0.35); }
-    .tag-cyan { background: rgba(45, 212, 191, 0.18); color: var(--cyan-bright); border: 1px solid rgba(45, 212, 191, 0.35); }
-    .tag-orange { background: rgba(251, 146, 60, 0.18); color: var(--orange); border: 1px solid rgba(251, 146, 60, 0.35); }
+/* cost + stack */
+.cost{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.lane{border:1px solid var(--line);border-radius:16px;padding:22px;background:var(--ink-2);display:grid;gap:14px}
+.lane h3{font-size:20px;font-weight:700}
+.bars{display:grid;gap:10px}
+.barrow{display:grid;grid-template-columns:150px 1fr 70px;gap:12px;align-items:center;font-size:13.5px;color:var(--muted)}
+.barrow .track{height:10px;border-radius:6px;background:var(--ink-3);overflow:hidden}
+.barrow .fill{height:100%;border-radius:6px}
+.barrow b{font:600 12.5px var(--f-mono);color:var(--fg);text-align:right}
+@media (max-width:860px){.cost{grid-template-columns:1fr}.barrow{grid-template-columns:110px 1fr 60px}}
+.stack{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid var(--line);border-radius:16px;overflow:hidden}
+.stack div{padding:20px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);display:grid;gap:8px;align-content:start}
+.stack div:nth-child(3n){border-right:0}
+.stack div:nth-last-child(-n+3){border-bottom:0}
+.stack h3{font:600 12px var(--f-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--xml)}
+.stack p{font-size:14.5px;color:#C9C3B7}
+@media (max-width:860px){.stack{grid-template-columns:1fr}.stack div{border-right:0!important;border-bottom:1px solid var(--line)!important}.stack div:last-child{border-bottom:0!important}}
 
-    .card h3 {
-      font-size: 1.25rem;
-      font-weight: 700;
-      color: #ffffff;
-      margin-bottom: 0.55rem;
-    }
+/* bullets + footer */
+.resume{padding:0;margin:0;display:grid;grid-template-columns:1fr 1fr;gap:14px 36px;counter-reset:r}
+.resume li{list-style:none;padding:16px 0;border-top:1px solid var(--line);font-size:15.5px;color:#C9C3B7}
+.resume li b{color:var(--fg)}
+.resume ul{display:contents}
+@media (max-width:860px){.resume{grid-template-columns:1fr}}
+footer{border-top:1px solid var(--line);padding-block:44px 64px;color:var(--muted);font-size:14px}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px}
+footer b{color:var(--fg);font-family:var(--f-display);font-size:18px}
 
-    .card p {
-      color: var(--subtext);
-      font-size: 0.93rem;
-      margin-bottom: 1rem;
-    }
-
-    .card ul.feature-list {
-      list-style: none;
-      margin-bottom: 1.1rem;
-      color: var(--subtext);
-      font-size: 0.89rem;
-    }
-    .card ul.feature-list li {
-      margin-bottom: 0.45rem;
-      padding-left: 1.1rem;
-      position: relative;
-    }
-    .card ul.feature-list li::before {
-      content: "▹";
-      position: absolute;
-      left: 0;
-      color: var(--cyan-bright);
-    }
-    .card ul.feature-list li strong {
-      color: #e2e8f0;
-    }
-
-    /* Architecture Pipeline Block */
-    .arch-code {
-      background: rgba(4, 10, 18, 0.92);
-      border: 1px solid rgba(45, 212, 191, 0.28);
-      border-radius: 12px;
-      padding: 1.2rem 1.4rem;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.84rem;
-      color: #cbd5e1;
-      overflow-x: auto;
-      line-height: 1.55;
-      margin-bottom: 1.4rem;
-    }
-    .arch-code .hl-cyan { color: var(--cyan-bright); font-weight: 700; }
-    .arch-code .hl-purple { color: var(--purple-bright); font-weight: 700; }
-    .arch-code .hl-orange { color: var(--orange); font-weight: 700; }
-
-    /* Process Screenshot Embeds */
-    .process-screenshot {
-      width: 100%;
-      border-radius: 10px;
-      border: 1px solid rgba(255, 255, 255, 0.14);
-      margin-top: 1rem;
-      box-shadow: 0 6px 24px rgba(0, 0, 0, 0.4);
-      transition: transform 0.3s ease, border-color 0.3s ease;
-      display: block;
-    }
-    .process-screenshot:hover {
-      transform: scale(1.015);
-      border-color: rgba(45, 212, 191, 0.5);
-    }
-    .screenshot-caption {
-      font-size: 0.82rem;
-      color: var(--cyan-bright);
-      margin-top: 0.5rem;
-      font-weight: 500;
-    }
-
-    /* Key Metrics Badge Row */
-    .metric-badges {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-    }
-    .metric-badge {
-      background: rgba(15, 28, 44, 0.9);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      color: var(--purple-bright);
-      padding: 0.28rem 0.68rem;
-      border-radius: 6px;
-      font-size: 0.8rem;
-      font-family: 'JetBrains Mono', monospace;
-      font-weight: 600;
-    }
-    .metric-badge.cyan { color: var(--cyan-bright); }
-    .metric-badge.orange { color: var(--orange); }
-
-    /* Embedded Live Iframe Box */
-    .demo-embed-box {
-      width: 100%;
-      height: 520px;
-      border-radius: 14px;
-      overflow: hidden;
-      border: 1px solid var(--card-border);
-      background: #020610;
-      margin-top: 1.2rem;
-    }
-
-    .demo-embed-box iframe {
-      width: 100%;
-      height: 100%;
-      border: none;
-    }
-
-    /* Tech Stack Matrix Table */
-    .skills-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 1.2rem;
-    }
-    .skill-card {
-      background: rgba(15, 23, 42, 0.65);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 12px;
-      padding: 1.3rem;
-    }
-    .skill-card h4 {
-      color: var(--purple-bright);
-      font-size: 0.96rem;
-      font-weight: 700;
-      margin-bottom: 0.7rem;
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
-    }
-    .skill-card ul {
-      list-style: none;
-      font-size: 0.89rem;
-      color: var(--subtext);
-    }
-    .skill-card ul li {
-      margin-bottom: 0.42rem;
-      display: flex;
-      align-items: flex-start;
-      gap: 0.4rem;
-    }
-    .skill-card ul li::before {
-      content: "▹";
-      color: var(--cyan-bright);
-      flex-shrink: 0;
-    }
-
-    footer {
-      text-align: center;
-      padding: 3rem 1rem 1rem;
-      color: var(--subtext);
-      font-size: 0.9rem;
-      border-top: 1px solid rgba(255, 255, 255, 0.08);
-      margin-top: 4rem;
-    }
-  </style>
+/* motion */
+.flow{stroke-dasharray:6 8;animation:dash 1.6s linear infinite}
+@keyframes dash{to{stroke-dashoffset:-28}}
+.spin{transform-origin:210px 210px;animation:spin 14s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+@media (prefers-reduced-motion:reduce){.flow,.spin{animation:none}.xml .row,.card .f{transition:none}}
+</style>
 </head>
 <body>
 
-  <div class="container">
-    
-    <!-- Hero Header -->
-    <header class="hero">
-      <div class="avatar-badge">🤖 AI Agent &amp; Data Systems Engineer · Open-Weight LLM Pipelines</div>
-      <h1>Avinash Immaneni</h1>
-      <h2><span class="bm-logo" style="font-size:inherit;">Bi<span class="llm-grad">llm</span>iner</span>: From Legacy ERP Book Keeping (<span class="llm-grad">XML to LLM</span>) with Open-Weight Models &amp; AI Agents</h2>
-      <p>A dental-supplies distributor kept its entire <strong>book keeping and accounting</strong> in <strong>Tally Prime (a desktop Legacy ERP)</strong>, where the only way in or out is <strong>XML over HTTP</strong> across ~13,000 messy, clerk-typed stock names. I built <strong>Bi<span class="llm-grad">llm</span>iner</strong>: an agentic operations and <strong>automated book keeping system</strong> that pulls that XML out of the Legacy ERP, builds a self-healing product catalogue, and runs <strong>production AI agents and open-weight models (Gemma 4 &amp; Gemma 2B LoRA)</strong> on top of it — cutting inference costs dramatically by replacing expensive commercial APIs with open-weight models and ~25 ms edge lookups while posting paisa-exact XML <strong>book keeping vouchers</strong> back into Tally without changing how bookkeepers and accountants work.</p>
-      <div class="theme-banner">Theme: XML to LLM · Legacy ERP Book Keeping → Open-Weight Models &amp; Autonomous Agents</div>
-    </header>
-
-    <!-- SECTION 0: AI Agent Architecture & Open-Weight Cost Engineering (NEW SPOTLIGHT!) -->
-    <section>
-      <h2 class="section-title"><span class="icon">🚀</span> Autonomous AI Agents &amp; Open-Weight Model Cost Reduction</h2>
-
-      <div class="grid">
-        <!-- Agent Spotlight 1: Open-Weight Migration & Cost Engineering -->
-        <div class="card">
-          <span class="card-tag tag-orange">Open-Weight LLMs &amp; Cost Engineering</span>
-          <h3>From Expensive Frontier APIs → Production Gemma 4 &amp; Gemma 2B LoRA</h3>
-          <p>Prototyped extraction and catalog matching on commercial frontier APIs, then systematically re-architected the stack around <strong>open-weight models and deterministic edge routing</strong> to eliminate per-token API bottlenecks and slash inference costs:</p>
-          <ul class="feature-list">
-            <li><strong>Gemma 4 in Production:</strong> Replaced commercial LLM calls on high-volume purchase bill line matching and variant resolution with open-weight <strong>Gemma 4</strong>, eliminating rate limits and per-bill API spikes.</li>
-            <li><strong>Gemma 2B LoRA Judge (Fine-Tuning):</strong> Built the training dataset and fine-tuning pipeline for a compact <strong>Gemma 2B LoRA</strong> ranking judge designed to pick the winning SKU from the top-5 rule candidates at a fraction of large-model compute.</li>
-            <li><strong>$0-Token Edge Routing &amp; $0.007 Imagery:</strong> Offloaded known aliases and defining-word lookups to <strong>Cloudflare Workers + D1 (~25 ms/line)</strong> so models are only called on true ambiguity, and built a real-photo storefront pipeline at <strong>~$0.007 per image</strong> instead of expensive generative image APIs.</li>
-          </ul>
-          <div class="metric-badges">
-            <span class="metric-badge orange">Gemma 4 in Production</span>
-            <span class="metric-badge orange">Gemma 2B LoRA Fine-Tuning</span>
-            <span class="metric-badge cyan">~25 ms Zero-Token Edge Hits</span>
-            <span class="metric-badge cyan">$0.007 / Product Image</span>
-          </div>
-        </div>
-
-        <!-- Agent Spotlight 2: Multi-Agent Production Architecture -->
-        <div class="card">
-          <span class="card-tag tag-purple">Production AI Agent Fleet</span>
-          <h3>4 Specialized Agents with Deterministic &amp; Reversible Guardrails</h3>
-          <p>Instead of a single fragile chat prompt, BillMiner runs <strong>four narrow, tool-using AI agents</strong> where every action is bounded by arithmetic checks, schema gates, and reversible audit logs:</p>
-          <ul class="feature-list">
-            <li><strong>1. "Rao" (Retrieval Augmented Outvoicing Agent):</strong> In-workspace invoicing agent that takes pasted or photographed customer orders and writes structured lines straight onto the live bill with inline variant pickers, or drafts instant GST-inclusive price replies.</li>
-            <li><strong>2. Nightly Self-Learning &amp; Catalogue Repair Agent:</strong> A nightly Cloudflare cron diffs raw OCR scans against final posted Tally vouchers to learn supplier aliases, followed by a scheduled <strong>Claude cloud agent</strong> that audits each bill and fixes catalogue cards through reversible, state-logged endpoints.</li>
-            <li><strong>3. Multi-Source Web Research Agent:</strong> Combines <strong>Brave Search API + LLM reader</strong> with manufacturer PDFs to verify missing product attributes across multiple independent sources before routing shelf-only unknowns to a 1-tap staff mobile queue.</li>
-            <li><strong>4. Read-Only Gmail Draft Agent:</strong> Monitors shared enquiry inboxes, runs Seller Detect against D1, and prepares quotation drafts without ever auto-sending unreviewed mail.</li>
-          </ul>
-          <div class="metric-badges">
-            <span class="metric-badge">Rao In-Screen Agent</span>
-            <span class="metric-badge">Nightly Audited Repair Agent</span>
-            <span class="metric-badge">Brave + LLM Research Agent</span>
-            <span class="metric-badge">100% Reversible Edits</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- SECTION 1: Core AI, OCR & Order Intelligence -->
-    <section>
-      <h2 class="section-title"><span class="icon">🧠</span> BillMiner AI, Dual-Reader OCR &amp; Self-Learning Loops</h2>
-      
-      <div class="grid">
-        <!-- Card 1: Dual-Reader Purchase Bill Scanner -->
-        <div class="card">
-          <span class="card-tag tag-purple">Dual-Reader Purchase Bill Scanner</span>
-          <h3>Supplier Invoice → Tally Purchase Voucher (92% End-to-End)</h3>
-          <p>Reads multi-page photos or PDFs of supplier bills using <strong>two readers in parallel</strong> whose results are reconciled by arithmetic checks against the bill's printed taxable total:</p>
-          <ul class="feature-list">
-            <li><strong>Parallel Readers:</strong> Custom Vision OCR + rule-based table layout reader (handles tilted tables, <code>1.234,56</code> numbers, swapped qty/rate columns, and wrapped item names) alongside <strong>LlamaParse ("OCRia-1")</strong>. The reader whose line items sum to the printed taxable total wins.</li>
-            <li><strong>Per-Supplier Notes &amp; Gemma 4 Matching:</strong> Applies remembered supplier pack hints (re-verified by math) and matches each line to both its Tally stock item and catalogue card using <strong>Gemma 4</strong>.</li>
-            <li><strong>Nightly Self-Learning Loop:</strong> A nightly Cloudflare cron compares scans with posted Tally vouchers to learn supplier aliases/rules (with fragment guards and full undo), and a scheduled <strong>Claude agent routine</strong> fixes catalogue cards via audited, reversible endpoints.</li>
-          </ul>
-          <div class="metric-badges">
-            <span class="metric-badge">291 / 317 Bills Correct (92%)</span>
-            <span class="metric-badge">12 / 12 Regression Match</span>
-            <span class="metric-badge">Gemma 4 + Claude Audit Loop</span>
-          </div>
-        </div>
-
-        <!-- Card 2: Seller Detect & Rao -->
-        <div class="card">
-          <span class="card-tag tag-purple">Edge Seller Detect + Rao Assistant</span>
-          <h3>Customer Message → Tally Items (~25 ms/line) &amp; "Rao"</h3>
-          <p>Maps customer WhatsApp messages, Gmail enquiries, and photographed handwritten lists to exact Tally stock items at the edge on <strong>Cloudflare Workers + D1</strong>, paired with <strong>Rao ("Retrieval Augmented Outvoicing")</strong> inside the invoice screen:</p>
-          <ul class="feature-list">
-            <li><strong>Measured Edge Accuracy:</strong> WhatsApp orders hit <strong>81% top-1 and 98% top-3</strong>; Gmail quotes hit <strong>75% top-1 and 89% top-3</strong> at ~25 ms/line. When unsure, offers 3 choices instead of guessing.</li>
-            <li><strong>Defining Words &amp; LoRA Judge:</strong> Steered by product nouns per Tally item, with a fine-tuned <strong>Gemma 2B LoRA</strong> judge (in progress) trained to rank top-5 candidates.</li>
-            <li><strong>Rao Invoicing Assistant:</strong> Paste or photograph an order and Rao puts lines straight onto the bill with inline variant pickers, or generates plain-text GST-inclusive price replies without touching the active bill.</li>
-          </ul>
-          <div class="metric-badges" style="margin-bottom:0.8rem;">
-            <span class="metric-badge">~25 ms / line (Cloudflare D1)</span>
-            <span class="metric-badge">98% Top-3 WhatsApp</span>
-            <span class="metric-badge">Rao: Retrieval Augmented Outvoicing</span>
-          </div>
-
-          <img src="./assets/screenshots/handwritten_ocr.jpg" alt="Handwritten Doctor Note OCR Modal" class="process-screenshot">
-          <div class="screenshot-caption">📷 Live System: Extracting 9 line items from a handwritten doctor order into structured bill lines.</div>
-        </div>
-
-        <!-- Card 3: Catalogue Built from Tally's Mess -->
-        <div class="card">
-          <span class="card-tag tag-purple">"Nothing Is Lost" Catalogue Engine</span>
-          <h3>~13,000 Messy Tally Names → Family / Variant Cards</h3>
-          <p>Reorganized ~13,000 clerk-typed Tally stock names (~9,600 sold) with misspellings, duplicates, and catch-all names into structured <strong>Product Families → Variants (catalogue cards)</strong>:</p>
-          <ul class="feature-list">
-            <li><strong>Move, Never Delete:</strong> Every Tally name remains findable. Full pre/post set audits ensure zero lost keys; <strong>3,256 never-billed dead names</strong> audited and marked in our DB without altering Tally.</li>
-            <li><strong>Multi-Source Grounding:</strong> Manufacturer catalogues treated as truth, backed by <strong>Brave Search + LLM web verification</strong> across multiple sources.</li>
-            <li><strong>Staff Micro-Questions:</strong> Shelf-knowledge gaps become quick mobile questions for staff while they wait on tasks — settling <strong>~22% of catalogue gaps</strong> organically.</li>
-          </ul>
-          <div class="metric-badges">
-            <span class="metric-badge">~13,000 Tally Items Mapped</span>
-            <span class="metric-badge">3,256 Dead Names Audited</span>
-            <span class="metric-badge">22% Gaps Solved via Staff UI</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- SECTION 2: The XML -> LLM Pipeline Architecture -->
-    <section>
-      <h2 class="section-title"><span class="icon">🔄</span> Architecture: Legacy ERP XML → Edge D1 → Open-Weight LLM Pipeline</h2>
-
-      <div class="arch-code">
-<span class="hl-orange">Tally Prime — Desktop Legacy ERP &amp; Book Keeping (:9000 XML/HTTP)</span>
-   │  custom TDL reports, compact XML exports (≤500 KB per queued job; isolated date variables never disturb live book keeping)
-   ▼
-<span class="hl-cyan">Async Sync Agent &amp; Queue</span> ── bidirectional XML job queue (pull ledger diffs, push paisa-exact XML vouchers)
-   ▼
-<span class="hl-cyan">Firestore (state)  ⇄  Cloudflare D1 / KV</span> (edge vector &amp; token lookup ~25 ms/line across ~13,000 SKUs, aliases &amp; variant cards)
-   ▼
-<span class="hl-purple">Open-Weight LLM + OCR Layer:</span>  Gemma 4 (Prod Matcher) · Gemma 2B LoRA (Top-5 Judge) · Vision OCR + LlamaParse ("OCRia-1") · Claude Audit Routines · Brave Search
-   ▼
-<span class="hl-cyan">Next.js Agent Workspace + Cloudflare Workers Edge APIs</span>
-   ▼
-<span class="hl-orange">Back to Legacy ERP as XML:</span> automated purchase vouchers, sales invoices &amp; stock items (reconciles with GSTR-1 to the paisa)
-      </div>
-      
-      <div class="grid">
-        <div class="card cyan-accent">
-          <span class="card-tag tag-cyan">Non-Disruptive TDL &amp; Paisa-Exact Book Keeping</span>
-          <h3>Zero-Friction Legacy ERP Synchronization &amp; Tax Engine</h3>
-          <p>Custom TDL reports split Legacy ERP exports into ≤500 KB queued jobs with isolated date-range variables so live book keeping staff are never interrupted. Outbound XML calculates GST per-line rounded half-up to the paisa — matching Tally's internal tax engine and reconstructed GSTR-1 returns with zero rounding rejections.</p>
-          <div class="metric-badges">
-            <span class="metric-badge cyan">≤500 KB Queued TDL Jobs</span>
-            <span class="metric-badge cyan">Paisa-Exact Book Keeping &amp; GSTR-1</span>
-            <span class="metric-badge cyan">Zero Ledger Disruption</span>
-          </div>
-        </div>
-
-        <div class="card cyan-accent">
-          <span class="card-tag tag-cyan">Fine-Tuned Small-Model Judge</span>
-          <h3>Gemma 2B LoRA Candidate Ranker &amp; Defining-Word Steering</h3>
-          <p>To keep order matching under ~25 ms/line on Cloudflare Workers + D1 while handling ambiguous shorthand, each SKU carries a canonical "defining word" noun that steers candidate retrieval, paired with a fine-tuned <strong>Gemma 2B LoRA</strong> judge trained to select the exact SKU among the top 5 rule candidates.</p>
-          <div class="metric-badges">
-            <span class="metric-badge cyan">Gemma 2B LoRA Ranker</span>
-            <span class="metric-badge cyan">Defining-Word Noun Steering</span>
-            <span class="metric-badge cyan">98% Top-3 Order Recall</span>
-          </div>
-        </div>
-
-        <!-- Real System Screenshot: AI Variant Disambiguation Matrix -->
-        <div class="card cyan-accent" style="grid-column: 1 / -1;">
-          <span class="card-tag tag-cyan">Inline AI Variant Resolution</span>
-          <h3>Multi-Axis Variant Disambiguation Matrix &amp; Anomaly Guardrails</h3>
-          <p>When an unstructured order or scanned bill references a product family with multiple shades, sizes, or pack ratios, BillMiner surfaces an inline variant matrix synthesized from ~13,000 normalized Legacy ERP strings, complete with automated margin/cost anomaly flags before ledger commit.</p>
-          <img src="./assets/screenshots/sales_analytics.jpg" alt="AI Variant Disambiguation Matrix and Margin Guardrails" class="process-screenshot">
-          <div class="screenshot-caption">📊 Live BillMiner Workspace: Inline multi-shade variant disambiguation matrix and automated price/cost anomaly guardrails.</div>
-        </div>
-      </div>
-    </section>
-
-    <!-- SECTION 3: Live Operational Proof & Interactive Deck -->
-    <section>
-      <h2 class="section-title"><span class="icon">⚡</span> Autonomous Order-to-Ledger Workflows &amp; Interactive Architecture Deck</h2>
-      
-      <div class="grid" style="margin-bottom:1.5rem;">
-        <div class="card cyan-accent">
-          <span class="card-tag tag-cyan">Closed-Loop Book Keeping Pipeline</span>
-          <h3>End-to-End Agentic Order-to-XML Voucher Lifecycle</h3>
-          <p>Automated state machine governing every transaction from Unstructured Intake ➔ AI Quote Draft ➔ Verification ➔ Paisa-Exact Legacy ERP XML Voucher Post.</p>
-          <img src="./assets/screenshots/order_stepper.jpg" alt="Closed-Loop Order to XML Voucher Pipeline" class="process-screenshot">
-          <div class="screenshot-caption">⚡ Live System: End-to-end state tracking &amp; automated Legacy ERP XML voucher posting.</div>
-        </div>
-
-        <div class="card cyan-accent">
-          <span class="card-tag tag-cyan">~25 ms Edge Retrieval</span>
-          <h3>Cloudflare D1 Edge Retrieval Across ~13,000 Normalized SKUs</h3>
-          <p>Sub-25ms order-independent token search running at the edge on Cloudflare Workers + D1, ranking ~13,000 normalized Legacy ERP items by buyer affinity and global velocity at $0 model token cost.</p>
-          <img src="./assets/screenshots/stock_search.jpg" alt="Sub-25ms Cloudflare D1 Edge SKU Retrieval" class="process-screenshot">
-          <div class="screenshot-caption">⚡ Live System: ~25 ms Cloudflare D1 edge retrieval across ~13,000 normalized Legacy ERP items.</div>
-        </div>
-      </div>
-
-      <div class="card cyan-accent">
-        <span class="card-tag tag-cyan">Interactive System Presentation</span>
-        <h3>Bi<span class="llm-grad">llm</span>iner + Tally Prime (Legacy ERP) Interactive Architecture Deck — XML to LLM</h3>
-        <p>Explore the interactive presentation deck below (or open in full-screen Desktop / Mobile view) showing how BillMiner sits beside Tally Prime: XML in, intelligence out.</p>
-        
-        <div class="metric-badges" style="margin-bottom:1.2rem;">
-          <span class="metric-badge cyan">⚡ ~25 ms/line Edge Lookup</span>
-          <span class="metric-badge cyan">📄 92% Dual-Reader Bill OCR</span>
-          <span class="metric-badge cyan">🔄 Paisa-Exact Tally XML Sync</span>
-          <span class="metric-badge cyan">🛡️ Resilient Offline Agent Queue</span>
-        </div>
-
-        <div class="demo-embed-box">
-          <iframe src="./mobile.html" title="BillMiner Operational Architecture Deck"></iframe>
-        </div>
-      </div>
-    </section>
-
-    <!-- SECTION 4: Technical Skills Matrix -->
-    <section>
-      <h2 class="section-title"><span class="icon">💻</span> BillMiner Tech Stack &amp; Engineering Matrix</h2>
-      
-      <div class="skills-grid">
-        <div class="skill-card">
-          <h4>AI, LLMs &amp; OCR</h4>
-          <ul>
-            <li>Google Cloud Vision + Custom Layout Reader</li>
-            <li>LlamaParse ("OCRia-1") Dual Reconciliation</li>
-            <li>Gemma 4 (Production Item &amp; Variant Matching)</li>
-            <li>Gemma 2B LoRA (Candidate Judge Fine-Tuning)</li>
-            <li>Claude Agents (Audited Nightly Cloud Routines)</li>
-            <li>Brave Search API (Multi-Source Web Grounding)</li>
-          </ul>
-        </div>
-
-        <div class="skill-card">
-          <h4>Edge, Data &amp; Storage</h4>
-          <ul>
-            <li>Cloudflare Workers (Edge APIs &amp; Nightly Cron)</li>
-            <li>Cloudflare D1 (SQLite Edge DB, ~25 ms/line)</li>
-            <li>Cloudflare KV &amp; Firebase Storage</li>
-            <li>Cloud Firestore (App State &amp; RBAC Rules)</li>
-            <li>Self-Learning Alias &amp; Reversible Audit Logs</li>
-          </ul>
-        </div>
-
-        <div class="skill-card">
-          <h4>Legacy ERP &amp; Tax Engine</h4>
-          <ul>
-            <li>Tally Prime Legacy ERP (XML/HTTP :9000)</li>
-            <li>Custom TDL Reports (≤500 KB Queued Jobs)</li>
-            <li>Bidirectional XML Book Keeping Sync Agent</li>
-            <li>Paisa-Exact Per-Line Half-Up GST Rounding</li>
-            <li>GSTR-1 Return Reconstruction from Vouchers</li>
-          </ul>
-        </div>
-
-        <div class="skill-card">
-          <h4>Agent UX &amp; Integrations</h4>
-          <ul>
-            <li>Next.js / React / TypeScript</li>
-            <li>Tailwind CSS &amp; shadcn/ui</li>
-            <li>Firebase App Hosting &amp; Firebase Auth</li>
-            <li>Rao (Retrieval Augmented Outvoicing Agent)</li>
-            <li>WhatsApp Intake &amp; Read-Only Gmail Draft Agent</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-      <p>Designed &amp; Built by <strong>Avinash Immaneni</strong> · <strong>Bi<span class="llm-grad">llm</span>iner</strong> (XML to LLM Operations &amp; Automated Book Keeping)</p>
-    </footer>
-
+<nav class="top" aria-label="Sections">
+  <div class="wrap">
+    <a class="brand" href="#top"><i aria-hidden="true"></i>BillMiner</a>
+    <ul>
+      <li><a href="#pipeline">XML to LLM</a></li>
+      <li><a href="#reader">Purchase scan</a></li>
+      <li><a href="#seller">Seller assistant</a></li>
+      <li><a href="#catalogue">Human loop</a></li>
+      <li><a href="#cost">Cost</a></li>
+      <li><a href="#store">Storefront</a></li>
+    </ul>
   </div>
+</nav>
 
+<header class="hero" id="top">
+  <div class="wrap hero-grid">
+    <div>
+      <p class="eyebrow">Avinash Immaneni · A legacy ERP AI layer</p>
+      <h1 style="margin-top:18px"><span class="x">&lt;XML/&gt;</span> in.<br><span class="l">Intelligence</span> out.</h1>
+      <p class="lede">A dental-supplies distributor ran everything in Tally Prime, a desktop ERP that only speaks XML over HTTP, on top of 13,000 clerk-typed item names. I built <b>BillMiner</b>: it pulls that XML out, rebuilds a clean catalogue, runs open-weight models and AI agents on it, and posts accounting entries back into Tally, exact to the cent. The accountants never changed how they work.</p>
+      <div class="who">
+        <span class="pill"><span class="dot"></span>In production daily</span>
+        <span class="pill">Under $5 / month on Cloudflare Workers</span>
+        <span>Built solo · <b>Next.js · Cloudflare Workers · Gemma 4 · Claude agents</b></span>
+      </div>
+    </div>
+
+    <div class="xform" aria-label="Example: a Tally purchase line in XML becomes a structured catalogue card">
+      <div class="xform-bar"><span></span><span></span><span></span><em>tally :9000 → billminer</em></div>
+      <div class="xform-body">
+<pre class="xml" id="xml"><span class="row" data-k="0"><span class="t">&lt;VOUCHER</span> VCHTYPE=<span class="v">"Purchase"</span><span class="t">&gt;</span></span><span class="row" data-k="0">  <span class="t">&lt;DATE&gt;</span><span class="v">20261031</span><span class="t">&lt;/DATE&gt;</span></span><span class="row" data-k="1">  <span class="t">&lt;STOCKITEMNAME&gt;</span></span><span class="row" data-k="1">    <span class="v">Tofflemire Bands Hehnenkratt</span></span><span class="row" data-k="1">  <span class="t">&lt;/STOCKITEMNAME&gt;</span></span><span class="row" data-k="2">  <span class="t">&lt;BILLEDQTY&gt;</span><span class="v">75 Pkt</span><span class="t">&lt;/BILLEDQTY&gt;</span></span><span class="row" data-k="3">  <span class="t">&lt;RATE&gt;</span><span class="v">1.95/Pkt</span><span class="t">&lt;/RATE&gt;</span></span><span class="row" data-k="4">  <span class="t">&lt;AMOUNT&gt;</span><span class="v">-146.25</span><span class="t">&lt;/AMOUNT&gt;</span></span><span class="row" data-k="0"><span class="t">&lt;/VOUCHER&gt;</span></span></pre>
+        <div class="card">
+          <div class="k">Catalogue card</div>
+          <div class="f" data-k="1"><span class="k">Family</span><span class="val">Tofflemire matrix bands<small>Hahnenkratt · misspelt Tally name kept as an alias</small></span></div>
+          <div class="f" data-k="2"><span class="k">Variants on the bill</span><div class="chips"><span class="chip">#101 × 50</span><span class="chip">#102 × 25</span></div></div>
+          <div class="f" data-k="3"><span class="k">Price check</span><span class="val">$1.95 / pack<small>matches the last 3 purchases</small></span></div>
+          <div class="f" data-k="4"><span class="k">Books</span><div class="chips"><span class="chip g">✓ ties to invoice $243.75</span></div></div>
+        </div>
+      </div>
+      <div class="xform-foot"><span>parsed in <b>24 ms</b> at the edge</span><span>0 tokens spent</span></div>
+    </div>
+  </div>
+</header>
+
+<div class="ribbon">
+  <div class="wrap">
+    <div class="stat"><b>13<em>k</em></b><span>clerk-typed ERP item names rebuilt into one catalogue</span></div>
+    <div class="stat"><b>92<em>%</em></b><span>of real supplier bills read and posted right (291 / 317)</span></div>
+    <div class="stat"><b>~25<em>ms</em></b><span>per order line, matched at the edge on Cloudflare D1</span></div>
+    <div class="stat"><b>98<em>%</em></b><span>top-3 accuracy on customer WhatsApp orders</span></div>
+    <div class="stat"><b>&lt;$5<em>/mo</em></b><span>to run the edge layer on Cloudflare Workers</span></div>
+  </div>
+</div>
+
+<section id="pipeline">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">01 · XML to LLM</p>
+      <h2>An AI layer for a legacy ERP. No migration.</h2>
+      <p>Tally stays the system of record. BillMiner sits beside it: XML comes out through custom reports, gets cleaned and indexed at the edge, passes through the readers and models, and goes back into Tally as XML it accepts.</p>
+    </div>
+
+    <div class="diagram">
+      <svg viewBox="0 0 1100 430" role="img" aria-label="Pipeline: Tally Prime to TDL XML exports, a desktop job agent, edge data stores, the AI layer and the apps, with invoices flowing back to Tally as XML">
+        <defs>
+          <marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#73D2C3"/></marker>
+          <marker id="ahg" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#E0A944"/></marker>
+        </defs>
+        <!-- connectors -->
+        <g stroke="#73D2C3" stroke-width="2" fill="none" marker-end="url(#ah)">
+          <path class="flow" d="M160 150 H196"/>
+          <path class="flow" d="M340 150 H376"/>
+          <path class="flow" d="M520 150 H556"/>
+          <path class="flow" d="M700 150 H736"/>
+          <path class="flow" d="M880 150 H916"/>
+        </g>
+        <path class="flow" d="M1000 262 V360 Q1000 380 980 380 H100 Q80 380 80 360 V266" stroke="#E0A944" stroke-width="2" fill="none" marker-end="url(#ahg)"/>
+        <rect x="380" y="366" width="340" height="28" rx="14" fill="#0C131E" stroke="#3A3222"/>
+        <text x="550" y="385" text-anchor="middle" fill="#E0A944" font-size="13" font-family="JetBrains Mono, monospace">invoices · bills · new items as XML</text>
+
+        <!-- packets -->
+        <circle r="4.5" fill="#73D2C3"><animateMotion dur="5s" repeatCount="indefinite" path="M90 150 H1000"/></circle>
+        <circle r="4.5" fill="#E0A944"><animateMotion dur="5s" begin="2.5s" repeatCount="indefinite" path="M1000 262 V360 Q1000 380 980 380 H100 Q80 380 80 360 V266"/></circle>
+
+        <!-- nodes -->
+        <g font-size="13">
+          <rect x="20" y="40" width="140" height="222" rx="16" fill="#18253A" stroke="#26354D"/>
+          <text x="90" y="74" text-anchor="middle" fill="#ECE6DA" font-size="16" font-weight="700" font-family="Bricolage Grotesque, sans-serif">Tally Prime</text>
+          <text x="90" y="96" text-anchor="middle" fill="#93A0B4">desktop ERP</text>
+          <text x="90" y="142" text-anchor="middle" fill="#73D2C3" font-family="JetBrains Mono, monospace" font-size="12">XML / HTTP</text>
+          <text x="90" y="160" text-anchor="middle" fill="#73D2C3" font-family="JetBrains Mono, monospace" font-size="12">:9000</text>
+          <text x="90" y="210" text-anchor="middle" fill="#93A0B4">13k item names</text>
+          <text x="90" y="228" text-anchor="middle" fill="#93A0B4">invoices · ledgers</text>
+
+          <rect x="200" y="40" width="140" height="222" rx="16" fill="#121C2B" stroke="#26354D"/>
+          <text x="270" y="74" text-anchor="middle" fill="#ECE6DA" font-size="16" font-weight="700" font-family="Bricolage Grotesque, sans-serif">TDL reports</text>
+          <text x="270" y="96" text-anchor="middle" fill="#93A0B4">custom exports</text>
+          <text x="270" y="150" text-anchor="middle" fill="#ECE6DA">≤ 500 KB / job</text>
+          <text x="270" y="210" text-anchor="middle" fill="#93A0B4">own date vars:</text>
+          <text x="270" y="228" text-anchor="middle" fill="#93A0B4">never moves the</text>
+          <text x="270" y="246" text-anchor="middle" fill="#93A0B4">staff's live period</text>
+
+          <rect x="380" y="40" width="140" height="222" rx="16" fill="#121C2B" stroke="#26354D"/>
+          <text x="450" y="74" text-anchor="middle" fill="#ECE6DA" font-size="16" font-weight="700" font-family="Bricolage Grotesque, sans-serif">Desktop agent</text>
+          <text x="450" y="96" text-anchor="middle" fill="#93A0B4">Windows job queue</text>
+          <text x="450" y="150" text-anchor="middle" fill="#ECE6DA">pull · push · print</text>
+          <text x="450" y="210" text-anchor="middle" fill="#93A0B4">syncs, posts invoices,</text>
+          <text x="450" y="228" text-anchor="middle" fill="#93A0B4">prints 4×6 labels</text>
+
+          <rect x="560" y="40" width="140" height="222" rx="16" fill="#121C2B" stroke="#26354D"/>
+          <text x="630" y="74" text-anchor="middle" fill="#ECE6DA" font-size="16" font-weight="700" font-family="Bricolage Grotesque, sans-serif">Edge data</text>
+          <text x="630" y="96" text-anchor="middle" fill="#93A0B4">Cloudflare D1 · KV</text>
+          <text x="630" y="150" text-anchor="middle" fill="#ECE6DA">+ Firestore</text>
+          <text x="630" y="210" text-anchor="middle" fill="#93A0B4">aliases, cards,</text>
+          <text x="630" y="228" text-anchor="middle" fill="#93A0B4">invoices, supplier notes</text>
+
+          <rect x="740" y="40" width="140" height="222" rx="16" fill="#1A2236" stroke="#73D2C3" stroke-opacity=".55"/>
+          <text x="810" y="74" text-anchor="middle" fill="#73D2C3" font-size="16" font-weight="700" font-family="Bricolage Grotesque, sans-serif">AI layer</text>
+          <text x="810" y="106" text-anchor="middle" fill="#ECE6DA">Vision OCR</text>
+          <text x="810" y="128" text-anchor="middle" fill="#ECE6DA">LlamaParse</text>
+          <text x="810" y="150" text-anchor="middle" fill="#ECE6DA">Gemma 4</text>
+          <text x="810" y="172" text-anchor="middle" fill="#ECE6DA">Gemma 2B LoRA</text>
+          <text x="810" y="194" text-anchor="middle" fill="#ECE6DA">Claude agents</text>
+          <text x="810" y="228" text-anchor="middle" fill="#93A0B4">models run only on</text>
+          <text x="810" y="246" text-anchor="middle" fill="#93A0B4">real ambiguity</text>
+
+          <rect x="920" y="40" width="160" height="222" rx="16" fill="#121C2B" stroke="#26354D"/>
+          <text x="1000" y="74" text-anchor="middle" fill="#ECE6DA" font-size="16" font-weight="700" font-family="Bricolage Grotesque, sans-serif">Apps</text>
+          <text x="1000" y="106" text-anchor="middle" fill="#ECE6DA">Purchase scanner</text>
+          <text x="1000" y="128" text-anchor="middle" fill="#ECE6DA">Rao invoicing</text>
+          <text x="1000" y="150" text-anchor="middle" fill="#ECE6DA">Seller detect</text>
+          <text x="1000" y="172" text-anchor="middle" fill="#ECE6DA">Staff POS · labels</text>
+          <text x="1000" y="194" text-anchor="middle" fill="#ECE6DA">Storefront</text>
+        </g>
+      </svg>
+      <div class="legend"><span><i style="background:#73D2C3"></i>Data out of the ERP</span><span><i style="background:#E0A944"></i>Results back in, as XML Tally accepts</span></div>
+    </div>
+
+    <div class="notes">
+      <div class="note"><span class="mono">XML THAT DOESN'T HANG</span><h3>Small, queued exports</h3><p>Big Tally exports froze the billing PCs. Compact TDL reports and a 500 KB job cap keep sync running all day while staff bill.</p></div>
+      <div class="note"><span class="mono">TAX TO THE CENT</span><h3>Rounds like Tally does</h3><p>Tax is rounded half-up on each line, then summed, exactly as Tally computes it. Generated entries never fail over a one-cent rounding difference.</p></div>
+      <div class="note"><span class="mono">ZERO-TOKEN FAST PATH</span><h3>Edge first, model last</h3><p>Known aliases and defining words resolve in D1 in about 25 ms. Models are called only when the edge can't decide.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="reader" style="padding-top:24px">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">02 · Purchase scan</p>
+      <h2>Two readers. Arithmetic picks the winner.</h2>
+      <p>Every supplier bill is read twice in parallel. A reader's lines have to add up to the taxable total printed on the bill. When the two disagree, the one whose sums check out is used, not the one that sounds most confident.</p>
+    </div>
+
+    <div class="dual">
+      <div class="bill" aria-label="Example supplier bill">
+        <h4><span>Tax invoice · 3 lines</span><span>p. 1 / 1</span></h4>
+        <table>
+          <thead><tr><th>Item</th><th>Qty</th><th>Rate</th><th>Amount</th></tr></thead>
+          <tbody>
+            <tr><td>Matrix band P/12 #101</td><td>50</td><td>1.95</td><td>97.50</td></tr>
+            <tr><td>Matrix band P/12 #102</td><td>25</td><td>1.95</td><td>48.75</td></tr>
+            <tr><td>Matrix band #151 straight</td><td>50</td><td>1.95</td><td>97.50</td></tr>
+          </tbody>
+          <tfoot><tr><td>Taxable value</td><td></td><td></td><td>243.75</td></tr></tfoot>
+        </table>
+      </div>
+      <div class="verdict">
+        <div class="reader"><div class="top"><h3>Reader A · layout rules</h3><span class="badge ok">✓ sums to 243.75</span></div><p>Vision OCR plus my row-and-column reader: tilted tables, dot-thousands numbers, swapped qty/rate columns, wrapped names.</p></div>
+        <div class="reader"><div class="top"><h3>Reader B · LlamaParse</h3><span class="badge no">✗ 2 lines, 195.00</span></div><p>Runs at the same time. Wins on the bills where Reader A's sums miss and its own lines tie out.</p></div>
+        <div class="rule">Σ lines = printed taxable → match each line to a Tally item and a catalogue card (Gemma 4) → post</div>
+        <p style="color:var(--muted);font-size:14px">Regression on posted bills: <b style="color:var(--fg)">12 / 12</b> matched their posted totals and line counts.</p>
+      </div>
+    </div>
+
+    <div class="loop" style="margin-top:88px">
+      <svg viewBox="0 0 420 420" role="img" aria-label="Self-learning loop: scan, post in Tally, nightly diff, learn aliases, agent review, better next scan">
+        <circle cx="210" cy="210" r="150" fill="none" stroke="#26354D" stroke-width="2"/>
+        <circle cx="210" cy="210" r="150" fill="none" stroke="#73D2C3" stroke-width="2" class="flow" opacity=".7"/>
+        <g class="spin"><circle cx="210" cy="60" r="7" fill="#E0A944"/></g>
+        <g font-size="13" font-family="Inter, sans-serif" text-anchor="middle">
+          <circle cx="210" cy="60" r="34" fill="#121C2B" stroke="#26354D"/><text x="210" y="64" fill="#ECE6DA" font-weight="600">Scan</text>
+          <circle cx="340" cy="135" r="34" fill="#121C2B" stroke="#26354D"/><text x="340" y="139" fill="#ECE6DA" font-weight="600">Post</text>
+          <circle cx="340" cy="285" r="34" fill="#121C2B" stroke="#26354D"/><text x="340" y="282" fill="#ECE6DA" font-weight="600">Nightly</text><text x="340" y="298" fill="#93A0B4" font-size="11">diff</text>
+          <circle cx="210" cy="360" r="34" fill="#121C2B" stroke="#26354D"/><text x="210" y="364" fill="#ECE6DA" font-weight="600">Learn</text>
+          <circle cx="80" cy="285" r="34" fill="#121C2B" stroke="#26354D"/><text x="80" y="282" fill="#ECE6DA" font-weight="600">Agent</text><text x="80" y="298" fill="#93A0B4" font-size="11">review</text>
+          <circle cx="80" cy="135" r="34" fill="#121C2B" stroke="#26354D"/><text x="80" y="139" fill="#ECE6DA" font-weight="600">Cards</text>
+        </g>
+        <text x="210" y="204" text-anchor="middle" fill="#ECE6DA" font-size="22" font-weight="800" font-family="Bricolage Grotesque, sans-serif">Every bill</text>
+        <text x="210" y="228" text-anchor="middle" fill="#73D2C3" font-size="13" font-family="JetBrains Mono, monospace">teaches the next one</text>
+      </svg>
+      <div class="steps">
+        <div class="step"><div><h3>Scan and post</h3><p>The clerk scans a bill, fixes anything odd and posts it to Tally. A line with no Tally name never blocks the clerk.</p></div></div>
+        <div class="step"><div><h3>Nightly diff on a Cloudflare cron</h3><p>The scan's original words are compared with what was actually posted, to learn supplier aliases and per-supplier rules.</p></div></div>
+        <div class="step"><div><h3>Guarded learning</h3><p>Fragments are refused, notes are re-checked against the arithmetic, and every learned change can be undone.</p></div></div>
+        <div class="step"><div><h3>An agent reviews each bill</h3><p>A scheduled Claude agent audits the posted bill and fixes catalogue cards through logged endpoints that store the before and after state.</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="seller" style="padding-top:24px">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">03 · Seller assistant + scan</p>
+      <h2>From a WhatsApp photo to a Tally invoice.</h2>
+      <p>Customers order the way they talk: a chat message, a forwarded email, a photo of a handwritten list. The seller assistant scans it, matches every line to an exact Tally item at the edge, and Rao writes the lines onto the bill for the clerk to confirm.</p>
+    </div>
+
+    <div class="diagram">
+      <svg viewBox="0 0 1100 250" role="img" aria-label="Seller flow: customer message or photo, scan, seller detect at the edge, Rao writes bill lines, clerk confirms, Tally invoice">
+        <defs><marker id="ah2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#73D2C3"/></marker></defs>
+        <g stroke="#73D2C3" stroke-width="2" fill="none" marker-end="url(#ah2)">
+          <path class="flow" d="M170 125 H200"/><path class="flow" d="M350 125 H380"/><path class="flow" d="M530 125 H560"/><path class="flow" d="M710 125 H740"/><path class="flow" d="M890 125 H920"/>
+        </g>
+        <circle r="4.5" fill="#E0A944"><animateMotion dur="4.5s" repeatCount="indefinite" path="M95 125 H1010"/></circle>
+        <g font-family="Inter, sans-serif" font-size="13" text-anchor="middle">
+          <rect x="20" y="40" width="150" height="170" rx="16" fill="#18253A" stroke="#26354D"/>
+          <text x="95" y="74" fill="#ECE6DA" font-size="16" font-weight="700" font-family="Bricolage Grotesque, sans-serif">Customer</text>
+          <text x="95" y="112" fill="#ECE6DA">WhatsApp text</text><text x="95" y="134" fill="#ECE6DA">Gmail enquiry</text><text x="95" y="156" fill="#ECE6DA">handwritten photo</text>
+
+          <rect x="200" y="40" width="150" height="170" rx="16" fill="#121C2B" stroke="#26354D"/>
+          <text x="275" y="74" fill="#ECE6DA" font-size="16" font-weight="700" font-family="Bricolage Grotesque, sans-serif">Scan</text>
+          <text x="275" y="112" fill="#93A0B4">OCR reads</text><text x="275" y="134" fill="#93A0B4">photos and</text><text x="275" y="156" fill="#93A0B4">handwriting</text>
+
+          <rect x="380" y="40" width="150" height="170" rx="16" fill="#1A2236" stroke="#73D2C3" stroke-opacity=".55"/>
+          <text x="455" y="74" fill="#73D2C3" font-size="16" font-weight="700" font-family="Bricolage Grotesque, sans-serif">Seller detect</text>
+          <text x="455" y="112" fill="#ECE6DA">Workers + D1</text><text x="455" y="134" fill="#ECE6DA" font-family="JetBrains Mono, monospace" font-size="12">~25 ms / line</text><text x="455" y="156" fill="#93A0B4">unsure → 3 options</text>
+
+          <rect x="560" y="40" width="150" height="170" rx="16" fill="#121C2B" stroke="#26354D"/>
+          <text x="635" y="74" fill="#E0A944" font-size="16" font-weight="700" font-family="Bricolage Grotesque, sans-serif">Rao</text>
+          <text x="635" y="112" fill="#93A0B4">lines on the bill,</text><text x="635" y="134" fill="#93A0B4">customer's words</text><text x="635" y="156" fill="#93A0B4">above each item</text>
+
+          <rect x="740" y="40" width="150" height="170" rx="16" fill="#121C2B" stroke="#26354D"/>
+          <text x="815" y="74" fill="#ECE6DA" font-size="16" font-weight="700" font-family="Bricolage Grotesque, sans-serif">Clerk</text>
+          <text x="815" y="112" fill="#93A0B4">picks size/shade,</text><text x="815" y="134" fill="#93A0B4">checks price,</text><text x="815" y="156" fill="#93A0B4">confirms</text>
+
+          <rect x="920" y="40" width="160" height="170" rx="16" fill="#18253A" stroke="#26354D"/>
+          <text x="1000" y="74" fill="#ECE6DA" font-size="16" font-weight="700" font-family="Bricolage Grotesque, sans-serif">Tally</text>
+          <text x="1000" y="112" fill="#93A0B4">sales invoice</text><text x="1000" y="134" fill="#93A0B4">as XML, tax exact</text><text x="1000" y="156" fill="#93A0B4">to the cent</text>
+        </g>
+      </svg>
+    </div>
+
+    <div class="screens" style="margin-top:22px">
+      <figure class="shot s-ocr"><div class="chrome"><span></span><span></span><span></span></div><img src="assets/billminer/c-ocr.jpg" alt="A handwritten order photo read into 9 requested items with an Add all button"><figcaption><b>Scan: handwriting to bill lines</b>A doctor's handwritten list becomes 9 matched items. One tap adds them all.</figcaption></figure>
+      <figure class="shot s-inv"><div class="chrome"><span></span><span></span><span></span></div><img src="assets/billminer/c-invoice.jpg" alt="Invoice with variant pickers, low-price warnings and live GST totals"><figcaption><b>Rao's lines on the invoice</b>The exact size or shade is picked on the line. A price below the usual rate is flagged before the bill reaches Tally.</figcaption></figure>
+      <div class="s-stats">
+        <div><b>98%</b><span>WhatsApp orders: right item in the top 3 (81% first pick)</span></div>
+        <div><b>89%</b><span>Gmail quotes: right item in the top 3 (75% first pick)</span></div>
+        <div><b>~25 ms</b><span>per line at the edge, no model call</span></div>
+      </div>
+      <figure class="shot s-step"><div class="chrome"><span></span><span></span><span></span></div><img src="assets/billminer/c-stepper.jpg" alt="Order stepper: draft, quote sent, payment, Tally, sent"><figcaption><b>Order to invoice</b>Draft, quote, payment, Tally, WhatsApp. Price replies go out as plain-text quotes without touching the bill.</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section id="catalogue" style="padding-top:24px">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">04 · Human in the loop</p>
+      <h2>AI keeps the catalogue. People settle the doubts.</h2>
+      <p>Thirteen thousand clerk-typed names don't stay clean on their own. Agents do the upkeep every day, and anything they can't prove goes to a person as one plain question. Every answer and every edit is logged, and every edit can be undone.</p>
+    </div>
+
+    <div class="hl">
+      <div class="hl-step"><span class="role a">AI</span><h3>Learns from each bill</h3><p>A nightly job compares each scan with the posted invoice. A Claude agent then fixes the cards that bill touched.</p></div>
+      <div class="hl-step"><span class="role a">AI</span><h3>Researches the gaps</h3><p>Makers' catalogues, PDFs and web search with two or more sources. The maker beats any single retailer.</p></div>
+      <div class="hl-step"><span class="role h">Staff</span><h3>Answers one tap</h3><p>What only the shelf knows ("is this sold loose or by the box?") goes to a Questions tab on the staff phone.</p></div>
+      <div class="hl-step"><span class="role h">Clerk</span><h3>Teaches by working</h3><p>Every pick or correction at the billing desk becomes an alias for next time. No training screen needed.</p></div>
+      <div class="hl-step"><span class="role a">AI</span><h3>Logs and can undo</h3><p>Each card edit stores before and after. Wrong learning is rolled back, not argued with.</p></div>
+    </div>
+
+    <div class="messy" style="margin-top:56px">
+      <div class="names" aria-label="Names as typed in Tally">
+        <code>Tofflemire Bands <s>Hehnenkratt</s></code>
+        <code><s>Hennekraft</s> Bands</code>
+        <code>MATRIX BAND P/12 #101 TOFFLEMIRE</code>
+        <code>Tofflemire Matrix Bands <s>_unspecified</s></code>
+        <code>Matrix band #151 straight</code>
+      </div>
+      <div class="arrow" aria-hidden="true">→</div>
+      <div class="tree">
+        <div class="fam">Tofflemire matrix bands<small>FAMILY · HAHNENKRATT · 5 OLD NAMES KEPT AS ALIASES</small></div>
+        <div class="var"><b>#101</b><span><em>Universal</em> · pack of 12</span></div>
+        <div class="var"><b>#102</b><span><em>Thin</em> · pack of 12</span></div>
+        <div class="var"><b>#151</b><span><em>Straight</em> · pack of 12</span></div>
+      </div>
+    </div>
+    <div class="rulebar">
+      <span class="pill">move, never delete: every old name still finds its product</span>
+      <span class="pill">~9,600 sold names covered</span>
+      <span class="pill">3,256 dead names audited</span>
+      <span class="pill">22% of gaps settled by staff answers</span>
+    </div>
+  </div>
+</section>
+
+
+<section id="cost" style="padding-top:24px">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">05 · Cost</p>
+      <h2>Under $5 a month to run the edge.</h2>
+      <p>The whole matching and lookup layer runs on Cloudflare Workers, D1 and KV. Rules answer first at the edge, so a model is called only when a rule can't decide, and the high-volume model work runs on open-weight Gemma.</p>
+    </div>
+    <div class="cost">
+      <div class="lane bigcost">
+        <b>&lt;$5</b>
+        <span>a month for Workers, D1, KV and the nightly learning crons</span>
+        <div class="bars" style="margin-top:8px">
+          <div class="barrow"><span>Edge rule decides</span><div class="track"><div class="fill" style="width:81%;background:var(--xml)"></div></div><b>81%</b></div>
+          <div class="barrow"><span>3 options to clerk</span><div class="track"><div class="fill" style="width:17%;background:var(--gold)"></div></div><b>17%</b></div>
+          <div class="barrow"><span>Needs a person</span><div class="track"><div class="fill" style="width:2%;background:var(--rose)"></div></div><b>2%</b></div>
+        </div>
+        <p style="color:var(--muted);font-size:13.5px">WhatsApp order lines, internal test set. None of them needs a model call.</p>
+      </div>
+      <div class="lane">
+        <h3>Where the savings come from</h3>
+        <div class="bars">
+          <div class="barrow"><span>Order matching</span><div class="track"><div class="fill" style="width:100%;background:var(--xml)"></div></div><b>0 tokens</b></div>
+          <div class="barrow"><span>Bill line matching</span><div class="track"><div class="fill" style="width:100%;background:linear-gradient(90deg,var(--dim),var(--xml))"></div></div><b>Gemma 4</b></div>
+          <div class="barrow"><span>Product photos</span><div class="track"><div class="fill" style="width:100%;background:linear-gradient(90deg,var(--dim),var(--gold))"></div></div><b>$0.007</b></div>
+          <div class="barrow"><span>Ranking judge</span><div class="track"><div class="fill" style="width:70%;background:linear-gradient(90deg,var(--dim),var(--gold))"></div></div><b>2B LoRA</b></div>
+        </div>
+        <p style="color:var(--muted);font-size:13.5px">Prototyped on frontier APIs, then moved to open weights. The 2B LoRA judge is built, not yet in production.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="store" id="store">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">06 · The customer half</p>
+      <h2>The same catalogue, as a store.</h2>
+      <p>Once the data was clean, a storefront fell out of it: one page per product pattern, every size and shade the maker lists, and photos from the makers in one house style at about $0.007 an image.</p>
+      <span class="status">● PREVIEW · NOT LIVE YET</span>
+    </div>
+
+    <div class="store-grid">
+      <figure class="bframe st-main"><div class="bar"><span></span><span></span><span></span><em>store / burs-rotary / mani-burs</em></div><img src="assets/billminer/c-shop-mani.jpg" alt="MANI burs family page: 451 diamond codes, 24 shape series, 58 carbide codes"><figcaption><b>Every MANI code on the maker's 2026 list:</b> 451 diamond, 58 carbide, grouped by shape series.</figcaption></figure>
+      <div class="st-phones">
+        <figure class="phone"><img src="assets/billminer/c-shop-home-m.jpg" alt="Store home page on a phone"></figure>
+        <figure class="phone" style="margin-top:48px"><img src="assets/billminer/c-shop-mani-m.jpg" alt="MANI burs page on a phone"></figure>
+      </div>
+      <figure class="bframe st-a"><div class="bar"><span></span><span></span><span></span><em>store / p / ivostar-gnathostar</em></div><img src="assets/billminer/c-shop-teeth.jpg" alt="Ivoclar Ivostar and Gnathostar denture teeth page with line, arch and mould pickers"><figcaption><b>Pick by line, arch and mould,</b> the way a lab orders.</figcaption></figure>
+      <figure class="bframe st-b"><div class="bar"><span></span><span></span><span></span><em>store / f / mani-burs#s-TR</em></div><img src="assets/billminer/c-shop-mani-grid.jpg" alt="Grid of MANI TR series burs with ISO numbers, sizes and grit colours"><figcaption><b>ISO number, size and grit colour</b> for every code, as printed on the blister.</figcaption></figure>
+      <figure class="bframe st-c"><div class="bar"><span></span><span></span><span></span><em>store</em></div><img src="assets/billminer/c-shop-home.jpg" alt="Store home page: Everything your clinic runs on"><figcaption><b>Home:</b> 1,914 products from 294 brands across 11 departments.</figcaption></figure>
+    </div>
+
+    <div class="store-facts">
+      <div><b>1,914</b><span>products, built from Tally's names</span></div>
+      <div><b>294</b><span>brands</span></div>
+      <div><b>$0.007</b><span>per product photo, no generative images</span></div>
+      <div><b>85</b><span>pages first: they cover 70% of sales</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="stack" style="padding-top:24px">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">07 · Stack</p>
+      <h2>What it runs on.</h2>
+    </div>
+    <div class="stack">
+      <div><h3>Legacy ERP</h3><p>Tally Prime · XML over HTTP · custom TDL reports · Windows job agent</p></div>
+      <div><h3>Web app</h3><p>Next.js · React · TypeScript · Tailwind · shadcn/ui · Firebase App Hosting &amp; Auth</p></div>
+      <div><h3>Edge</h3><p>Cloudflare Workers · D1 (SQLite) · KV · cron learning jobs</p></div>
+      <div><h3>Models &amp; OCR</h3><p>Google Cloud Vision · LlamaParse · Gemma 4 · Gemma 2B LoRA · Claude agents</p></div>
+      <div><h3>Data</h3><p>Firestore · Firebase Storage · audited card-edit log with undo</p></div>
+      <div><h3>Integrations</h3><p>Gmail (read-only) · WhatsApp intake · Brave Search · 4×6 thermal labels</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="resume" style="padding-top:24px">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">08 · In one page</p>
+      <h2>What I built.</h2>
+    </div>
+    <ol class="resume">
+      <li><b>Legacy ERP AI layer (XML to LLM)</b> on Tally Prime: TDL/XML exports, a desktop sync agent and job queue feeding AI features with no change to how the accountants work.</li>
+      <li><b>Purchase scan:</b> a dual-reader bill pipeline (Vision OCR with layout rules, plus LlamaParse) reconciled against printed totals: 291 / 317 real supplier bills read and posted correctly.</li>
+      <li><b>Seller assistant + scan:</b> WhatsApp, email and handwritten-photo orders matched to exact stock items at the edge in ~25 ms per line (98% top-3); Rao writes them onto the invoice for the clerk to confirm.</li>
+      <li><b>Human-in-the-loop catalogue upkeep:</b> agents learn from every posted bill and research gaps; staff settle what only the shelf knows with one-tap questions; every edit is logged and reversible.</li>
+      <li><b>13,000 ERP names</b> rebuilt into a family/variant catalogue under a nothing-is-lost rule, now powering a 1,914-product storefront.</li>
+      <li><b>Under $5 a month</b> to run the edge layer on Cloudflare Workers, D1 and KV; rules answer first and open-weight Gemma 4 handles the model work.</li>
+      <li><b>Cent-exact sales tax</b> matching Tally's per-line rounding, so generated invoices and tax returns reconcile.</li>
+      <li><b>Open-weight migration:</b> from frontier APIs to Gemma 4 in production, with a Gemma 2B LoRA ranking judge prepared.</li>
+    </ol>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div><b>Avinash Immaneni</b><br>BillMiner · built 2026</div>
+    <div>Figures come from internal test sets, Oct–Nov 2026. The storefront is a preview.</div>
+  </div>
+</footer>
+
+<script>
+(() => {
+  const rows = [...document.querySelectorAll('#xml .row')];
+  const fields = [...document.querySelectorAll('.card .f')];
+  const keys = [1, 2, 3, 4];
+  let i = 0;
+  const reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const show = (k) => {
+    rows.forEach(r => r.classList.toggle('on', r.dataset.k === String(k)));
+    fields.forEach(f => f.classList.toggle('on', f.dataset.k === String(k)));
+  };
+  show(keys[0]);
+  if (reduce) return;
+  setInterval(() => { i = (i + 1) % keys.length; show(keys[i]); }, 1800);
+})();
+</script>
 </body>
 </html>
