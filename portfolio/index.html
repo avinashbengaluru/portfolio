@@ -279,6 +279,27 @@
     .slide-count-txt {
       font-size: 0.85rem; font-weight: 700; color: rgba(226,232,240,0.85); letter-spacing: 0.05em;
     }
+
+    .bm-logo {
+      font-family: "Inter", "Instrument Sans", system-ui, sans-serif;
+      font-weight: 800;
+      font-size: 1.15rem;
+      letter-spacing: -0.02em;
+      color: #f8fafc;
+      display: inline-flex;
+      align-items: baseline;
+    }
+    .llm-grad {
+      background: linear-gradient(90deg, #c084fc 0%, #a855f7 45%, #2dd4bf 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      color: transparent;
+      font-weight: 900;
+      padding: 0 0.5px;
+      filter: drop-shadow(0 0 8px rgba(168, 85, 247, 0.35));
+    }
+
   </style>
 </head>
 <body>
@@ -286,8 +307,8 @@
   <!-- Top Header -->
   <header class="mobile-header">
     <div class="mobile-brand">
-      <img src="assets/billbuddy-logo.png" alt="BillMiner" />
-      <span>BillMiner</span>
+      <span class="bm-logo">Bi<span class="llm-grad">llm</span>iner</span>
+      <span style="font-size:0.72rem; font-weight:700; color:#5eead4; background:rgba(45,212,191,0.12); border:1px solid rgba(45,212,191,0.3); padding:0.15rem 0.5rem; border-radius:999px;">XML → LLM</span>
     </div>
     <a href="deck.html" class="view-toggle">
       <span>Desktop View 💻</span>
@@ -306,15 +327,15 @@
     <section class="m-slide active" data-slide="0">
       <div class="m-card hero">
         <span class="tag-pill cyan">System Overview</span>
-        <h1 class="m-title">BillMiner + Tally Prime</h1>
-        <p class="m-body">Theme: XML in, intelligence out. BillMiner pulls Tally XML (≤500 KB TDL jobs), runs Open-Weight Models (Gemma 4 &amp; Gemma 2B LoRA), Autonomous Agents (Rao &amp; Nightly Cron), and ~25 ms/line Edge D1 lookups — posting paisa-exact XML vouchers back into Tally.</p>
+        <h1 class="m-title">Bi<span class="llm-grad">llm</span>iner + Tally Prime (Legacy ERP)</h1>
+        <p class="m-body">Theme: XML to LLM. BillMiner pulls Tally XML (≤500 KB TDL jobs), runs Open-Weight Models (Gemma 4 &amp; Gemma 2B LoRA), Autonomous Agents (Rao &amp; Nightly Cron), and ~25 ms/line Edge D1 lookups — posting paisa-exact XML vouchers back into Tally.</p>
       </div>
 
       <!-- Animated SVG Hero Loop -->
       <div class="m-svg-container">
         <svg viewBox="0 0 500 130">
           <rect x="20" y="25" width="145" height="75" rx="8" fill="#0f172a" stroke="#5eead4" stroke-width="2"/>
-          <text x="92.5" y="60" font-size="15" fill="#5eead4" font-weight="bold" text-anchor="middle">BILLMINER WEB</text>
+          <text x="92.5" y="60" font-size="15" fill="#5eead4" font-weight="bold" text-anchor="middle">BILLMINER (XML→LLM)</text>
           <text x="92.5" y="80" font-size="12" fill="#94a3b8" text-anchor="middle">Edge D1 + AI Agents</text>
 
           <!-- Glowing Animated Arrow Stream -->
@@ -1088,31 +1109,31 @@
       </div>
     </section>
 
-    <!-- Slide 13: Real System — Real-Time Price Analytics & Variant Matrix -->
+    <!-- Slide 13: Real System — AI Variant Disambiguation Matrix -->
     <section class="m-slide" id="mslide13">
       <div class="m-card hero">
         <span class="tag-pill cyan">LIVE SYSTEM PROOF</span>
-        <h1 class="m-title">Real System: Price Analytics & Variant Matrix</h1>
-        <h2 class="m-subtitle">Doctor Sales History & Supplier Cost Tracking</h2>
-        <p class="m-body">Live price history per doctor, supplier purchase costs, low-price alert badges, and multi-shade variant selection matrix.</p>
+        <h1 class="m-title">Real System: AI Variant Disambiguation Matrix</h1>
+        <h2 class="m-subtitle">Multi-Axis Variant Resolution &amp; Anomaly Guardrails</h2>
+        <p class="m-body">Inline multi-shade and pack-size variant matrix synthesized from ~13,000 normalized Legacy ERP strings, with automated cost/margin anomaly guardrails before book keeping commit.</p>
       </div>
       <div class="m-card">
-        <img src="./assets/screenshots/sales_analytics.jpg" alt="Sales Price Analytics & Variant Picker Screenshot" style="width:100%; border-radius:10px; border:1px solid rgba(255,255,255,0.15); box-shadow: 0 4px 20px rgba(0,0,0,0.5);">
-        <div style="font-size:0.8rem; color:#5eead4; margin-top:0.6rem; font-weight:600;">📊 Real Screenshot: Doctor price history (₹340), supplier cost (₹270), and variant shade picker.</div>
+        <img src="./assets/screenshots/sales_analytics.jpg" alt="AI Variant Disambiguation Matrix Screenshot" style="width:100%; border-radius:10px; border:1px solid rgba(255,255,255,0.15); box-shadow: 0 4px 20px rgba(0,0,0,0.5);">
+        <div style="font-size:0.8rem; color:#5eead4; margin-top:0.6rem; font-weight:600;">📊 Real Screenshot: Inline multi-shade variant disambiguation picker and automated anomaly guardrails.</div>
       </div>
     </section>
 
-    <!-- Slide 14: Real System — Sub-Second Stock Search & Dispatch -->
+    <!-- Slide 14: Real System — ~25 ms Cloudflare D1 Edge Retrieval -->
     <section class="m-slide" id="mslide14">
       <div class="m-card hero">
         <span class="tag-pill cyan">LIVE SYSTEM PROOF</span>
-        <h1 class="m-title">Real System: Stock Search & Thermal Dispatch</h1>
-        <h2 class="m-subtitle">Fast Stock Search & Instant Receipt Printing</h2>
-        <p class="m-body">Sub-second stock lookup across 10,000+ items with automated customer billing notifications and thermal shipping label printing.</p>
+        <h1 class="m-title">Real System: ~25 ms Edge SKU Retrieval</h1>
+        <h2 class="m-subtitle">Cloudflare Workers + D1 Edge Lookup ($0 Token Cost)</h2>
+        <p class="m-body">Sub-25ms order-independent token search across ~13,000 normalized Legacy ERP items, ranked by buyer affinity and velocity at $0 model token cost.</p>
       </div>
       <div class="m-card">
-        <img src="./assets/screenshots/stock_search.jpg" alt="Stock Search & Thermal Label Printing Screenshot" style="width:100%; border-radius:10px; border:1px solid rgba(255,255,255,0.15); box-shadow: 0 4px 20px rgba(0,0,0,0.5);">
-        <div style="font-size:0.8rem; color:#5eead4; margin-top:0.6rem; font-weight:600;">📱 Real Screenshot: Sub-second search dropdown, customer details, and thermal receipt label generation.</div>
+        <img src="./assets/screenshots/stock_search.jpg" alt="Sub-25ms Cloudflare D1 Edge SKU Retrieval Screenshot" style="width:100%; border-radius:10px; border:1px solid rgba(255,255,255,0.15); box-shadow: 0 4px 20px rgba(0,0,0,0.5);">
+        <div style="font-size:0.8rem; color:#5eead4; margin-top:0.6rem; font-weight:600;">⚡ Real Screenshot: ~25 ms Cloudflare D1 edge retrieval across ~13,000 normalized Legacy ERP SKUs.</div>
       </div>
     </section>
 

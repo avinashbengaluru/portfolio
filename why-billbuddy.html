@@ -241,18 +241,39 @@
     @media (prefers-reduced-motion: reduce) {
       .edge-b-dash, .edge-a-dash, .edge-loop { animation: none; }
     }
+
+    .bm-logo {
+      font-family: "Inter", "Instrument Sans", system-ui, sans-serif;
+      font-weight: 800;
+      font-size: 1.15rem;
+      letter-spacing: -0.02em;
+      color: #f8fafc;
+      display: inline-flex;
+      align-items: baseline;
+    }
+    .llm-grad {
+      background: linear-gradient(90deg, #c084fc 0%, #a855f7 45%, #2dd4bf 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      color: transparent;
+      font-weight: 900;
+      padding: 0 0.5px;
+      filter: drop-shadow(0 0 8px rgba(168, 85, 247, 0.35));
+    }
+
   </style>
 </head>
 <body>
   <main class="slide">
     <div class="brand-bar">
-      <img class="billbuddy-logo" src="assets/billbuddy-logo.png" alt="BillMiner" />
+      <span class="bm-logo">Bi<span class="llm-grad">llm</span>iner</span>
       <span class="vs-chip"><span></span> works with</span>
       <img class="tally-logo" src="assets/tally-logo.svg" alt="Tally" />
     </div>
 
     <header class="title-bubble">
-      <h1>Why We Built BillMiner Beside Tally (XML In, Intelligence Out)</h1>
+      <h1>Why We Built BillMiner Beside Tally (XML to LLM)</h1>
       <p class="sub">Tally is the books — not a clerk’s quote desk. Every WhatsApp ask became repeated Tally lookups, PDF printing, and rework.</p>
     </header>
 
@@ -435,8 +456,8 @@
               <p>Customer ask</p>
             </div>
             <div class="fnode hub a-bb">
-              <div class="icon"><img src="assets/billbuddy-logo.png" alt="" /></div>
-              <h3>BillMiner</h3>
+              <div class="icon"><span class="bm-logo">Bi<span class="llm-grad">llm</span>iner</span></div>
+              <h3>Bi<span class="llm-grad">llm</span>iner</h3>
               <p>Edge D1 + Gemma 4 + Rao</p>
             </div>
             <div class="fnode a-quote">

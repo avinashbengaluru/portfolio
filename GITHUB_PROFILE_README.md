@@ -6,7 +6,7 @@ Building **production AI agent systems**, **open-weight LLM & LoRA inference pip
 
 I built **BillMiner** — an XML-to-LLM operations and **automated book keeping system** that turns **Tally Prime (a desktop Legacy ERP and book keeping system** that only speaks `XML over HTTP`) into an autonomous, AI-assisted distribution workflow without changing how bookkeepers and accountants work.
 
-> **Core Engineering Theme:** *XML in, intelligence out.* Spend model compute only on ambiguity — route known lookups to ~25 ms edge databases, replace expensive closed APIs with **open-weight models (Gemma 4 & Gemma 2B LoRA)**, and bound every AI agent with arithmetic verification and reversible audit logs.
+> **Core Engineering Theme: `XML to LLM`** — Spend model compute only on ambiguity: route known lookups to ~25 ms edge databases, replace expensive closed APIs with **open-weight models (Gemma 4 & Gemma 2B LoRA)**, and bound every AI agent with arithmetic verification and reversible audit logs.
 
 ---
 

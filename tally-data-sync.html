@@ -318,12 +318,33 @@
       .value-sync, .value-why { padding: 0.35rem 0.55rem; }
       .benefit { padding: 0.22rem 0.3rem; }
     }
+
+    .bm-logo {
+      font-family: "Inter", "Instrument Sans", system-ui, sans-serif;
+      font-weight: 800;
+      font-size: 1.15rem;
+      letter-spacing: -0.02em;
+      color: #f8fafc;
+      display: inline-flex;
+      align-items: baseline;
+    }
+    .llm-grad {
+      background: linear-gradient(90deg, #c084fc 0%, #a855f7 45%, #2dd4bf 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      color: transparent;
+      font-weight: 900;
+      padding: 0 0.5px;
+      filter: drop-shadow(0 0 8px rgba(168, 85, 247, 0.35));
+    }
+
   </style>
 </head>
 <body>
   <main class="slide">
     <div class="brand-bar">
-      <img class="billbuddy-logo" src="assets/billbuddy-logo.png" alt="BillMiner" />
+      <span class="bm-logo">Bi<span class="llm-grad">llm</span>iner</span>
       <span style="color:rgba(255,255,255,0.55);font-size:0.58rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;">NEW CUSTOMER SALE</span>
       <img class="tally-logo" src="assets/tally-logo.svg" alt="Tally" />
     </div>
@@ -425,7 +446,7 @@
           <div class="nodes">
             <div class="fnode hero dc-a1">
               <span class="step-badge">1</span>
-              <div class="icon"><img src="assets/billbuddy-logo.png" alt="" /></div>
+              <div class="icon"><span class="bm-logo">Bi<span class="llm-grad">llm</span>iner</span></div>
               <h3>New sale</h3>
               <p>Customer + items + pay</p>
             </div>
