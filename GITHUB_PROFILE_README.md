@@ -53,7 +53,7 @@ In-workspace AI invoicing chat agent built directly into the billing screen. Cle
 | :--- | :--- |
 | **Open-Weight & Cloud AI** | **Gemma 4** (Production Matching), **Gemma 2B LoRA** (Fine-Tuning), **Claude Agents** (Scheduled Cloud Routines), **Google Cloud Vision**, **LlamaParse ("OCRia-1")**, **Brave Search API** |
 | **Edge & Data Layer** | **Cloudflare Workers** (Edge APIs & Nightly Cron), **Cloudflare D1 (SQLite)**, **Cloudflare KV**, **Cloud Firestore**, **Firebase Storage** |
-| **Legacy ERP & Tax** | **Tally Prime** (XML over HTTP `:9000`, Custom **TDL** Reports), Windows Desktop Sync & 4×6 Thermal Label Agent, Paisa-Exact GST & GSTR-1 Engine |
+| **Legacy ERP & Book Keeping** | **Tally Prime Legacy ERP** (XML over HTTP `:9000`, Custom **TDL** Reports), Bidirectional XML Voucher Sync Agent, Paisa-Exact GST & GSTR-1 Engine |
 | **Web & Enterprise Data** | **Next.js**, **React**, **TypeScript**, **Tailwind CSS**, **shadcn/ui**, **Python**, **PySpark**, **SQL (T-SQL, PostgreSQL, Snowflake)**, **AWS SageMaker** |
 
 ---
